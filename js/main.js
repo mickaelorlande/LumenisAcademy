@@ -1,4 +1,8 @@
 // ===== MAIN APPLICATION CONTROLLER =====
+import { CONFIG, initializeConfig } from './config.js'
+import { apiClient } from './api-client.js'
+import { initializeSupabase, lumenisDB } from './supabase-client.js'
+
 class LumenisAcademy {
     constructor() {
         this.currentSection = 'home';
@@ -7,12 +11,21 @@ class LumenisAcademy {
         this.loadingScreen = document.getElementById('loadingScreen');
         this.currentOdsCard = 0;
         this.isInitialized = false;
+        this.config = null;
         
         this.init();
     }
 
     async init() {
         try {
+            // Initialize configuration
+            this.config = initializeConfig();
+            
+            // Initialize Supabase if enabled
+            if (this.config.supabase.enabled) {
+                initializeSupabase();
+            }
+            
             await this.showLoadingScreen();
             this.setupEventListeners();
             this.initializeComponents();
@@ -24,6 +37,11 @@ class LumenisAcademy {
             this.checkUserSession();
             this.hideLoadingScreen();
             this.isInitialized = true;
+            
+            // Sync offline data if online
+            if (navigator.onLine) {
+                await apiClient.syncOfflineData();
+            }
         } catch (error) {
             console.error('Initialization error:', error);
             this.hideLoadingScreen();
@@ -528,29 +546,202 @@ class LumenisAcademy {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         
-        // Simulate login process
         this.showLoadingInButton(e.target.querySelector('button[type="submit"]'));
         
-        setTimeout(() => {
-            this.isLoggedIn = true;
-            this.userData = {
-                email: email,
-                name: email.split('@')[0],
-                avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?w=40'
-            };
+        try {
+            const result = await apiClient.login(email, password);
             
-            this.updateUserInterface();
-            this.hideModal('loginModal');
-            this.navigateToSection('dashboard');
-            
-            // Show welcome message
-            if (window.cosmicAvatar) {
-                window.cosmicAvatar.showMessage(
-                    `🎉 Bem-vindo de volta, ${this.userData.name}! Seus neurônios estão brilhando intensamente hoje!`,
-                    5000
-                );
+            if (result.success) {
+                this.isLoggedIn = true;
+                this.userData = result.user;
+                
+                this.updateUserInterface();
+                this.hideModal('loginModal');
+                this.navigateToSection('dashboard');
+                
+                // Show welcome message
+                if (window.cosmicAvatar) {
+                    window.cosmicAvatar.showMessage(
+                        `🎉 Bem-vindo de volta, ${this.userData.firstName || this.userData.email.split('@')[0]}! Seus neurônios estão brilhando intensamente hoje!`,
+                        5000
+                    );
+                }
+            } else {
+                this.showMessage(`Erro no login: ${result.error}`, 'error');
             }
-        }, 2000);
+        } catch (error) {
+            this.showMessage('Erro de conexão. Tente novamente.', 'error');
+        } finally {
+            this.restoreButton(e.target.querySelector('button[type="submit"]'));
+        }
+    }
+    
+    async handleRegister(userData) {
+        try {
+            const result = await apiClient.register(userData);
+            
+            if (result.success) {
+            this.isLoggedIn = true;
+                this.userData = result.user;
+                
+                this.updateUserInterface();
+                this.hideModal('loginModal');
+                this.navigateToSection('dashboard');
+                
+                this.showMessage('Conta criada com sucesso! Bem-vindo à Lumenis Academy!', 'success');
+            } else {
+                this.showMessage(`Erro no registro: ${result.error}`, 'error');
+            }
+        } catch (error) {
+            this.showMessage('Erro de conexão. Tente novamente.', 'error');
+        }
+    }
+    
+    async loadDashboardData() {
+        if (!this.isLoggedIn) return;
+        
+        try {
+            const result = await apiClient.getNeuralDashboard();
+            
+            if (result.success) {
+                this.updateDashboardUI(result.dashboard);
+            }
+        } catch (error) {
+            console.error('Error loading dashboard:', error);
+        }
+    }
+    
+    updateDashboardUI(dashboardData) {
+        // Update neural metrics display
+        if (dashboardData.metrics) {
+            this.updateNeuralMetricsDisplay(dashboardData.metrics);
+        }
+        
+        // Update achievements
+        if (dashboardData.achievements) {
+            this.updateAchievementsDisplay(dashboardData.achievements);
+        }
+        
+        // Update insights
+        if (dashboardData.insights) {
+            this.displayInsights(dashboardData.insights);
+        }
+    }
+    
+    async recordNeuralMetric(type, value, context = {}) {
+        if (!this.config.features.neuralTracking) return;
+        
+        const metrics = [{
+            type,
+            value,
+            context,
+            sessionId: this.getSessionId(),
+            deviceId: this.getDeviceId()
+        }];
+        
+        try {
+            await apiClient.recordNeuralMetrics(metrics);
+        } catch (error) {
+            console.error('Error recording neural metrics:', error);
+        }
+    }
+    
+    getSessionId() {
+        let sessionId = sessionStorage.getItem('lumenisSessionId');
+        if (!sessionId) {
+            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('lumenisSessionId', sessionId);
+        }
+        return sessionId;
+    }
+    
+    getDeviceId() {
+        let deviceId = localStorage.getItem('lumenisDeviceId');
+        if (!deviceId) {
+            deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('lumenisDeviceId', deviceId);
+        }
+        return deviceId;
+    }
+            
+    async loadCourses() {
+        const courseGrid = document.getElementById('courseGrid');
+        if (!courseGrid) return;
+
+        try {
+            const result = await apiClient.getCourses('featured');
+            
+            if (result.success) {
+                this.renderCoursesFromAPI(result.courses);
+            } else {
+                // Fallback to static data
+                this.renderCourses('featured');
+            }
+        } catch (error) {
+            console.error('Error loading courses:', error);
+            // Fallback to static data
+            this.renderCourses('featured');
+        }
+    }
+    
+    renderCoursesFromAPI(courses) {
+        const courseGrid = document.getElementById('courseGrid');
+        courseGrid.innerHTML = '';
+        
+        courses.forEach(course => {
+            const courseCard = this.createCourseCardFromAPI(course);
+            courseGrid.appendChild(courseCard);
+        });
+    }
+    
+    createCourseCardFromAPI(course) {
+        const card = document.createElement('div');
+        card.className = 'course-card';
+        card.dataset.courseId = course.uuid;
+        
+        const premiumBadge = course.is_premium ? '<span class="premium-badge"><i class="fas fa-crown"></i></span>' : '';
+        
+        card.innerHTML = `
+            <div class="course-image" style="background-image: url('${course.thumbnail_url || 'https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg'}')">
+                <div class="course-tag">${this.getCategoryName(course.category)}</div>
+                ${premiumBadge}
+            </div>
+            <div class="course-content">
+                <h3>${course.title}</h3>
+                <p>${course.short_description || course.description}</p>
+                <div class="course-meta">
+                    <div class="course-stats">
+                        <span><i class="fas fa-star"></i> ${course.rating}</span>
+                        <span><i class="fas fa-users"></i> ${course.total_students}</span>
+                        <span><i class="fas fa-clock"></i> ${course.duration_hours}h</span>
+                    </div>
+                    <div class="course-actions">
+                        ${course.is_premium ? 
+                            `<button class="btn btn-solid premium-btn" data-course="${course.uuid}">
+                                R$ ${course.price} <i class="fas fa-crown"></i>
+                            </button>` :
+                            `<button class="btn btn-outline course-btn" data-course="${course.uuid}">
+                                Acessar Grátis
+                            </button>`
+                        }
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add event listeners
+        card.querySelector('.course-btn, .premium-btn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (course.is_premium) {
+                this.showPaymentModal(course);
+            } else {
+                this.accessCourse(course);
+            }
+        });
+        
+        card.addEventListener('click', () => this.showCourseDetail(course));
+        
+        return card;
     }
 
     handlePayment(e) {
