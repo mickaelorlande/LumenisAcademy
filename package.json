@@ -10,13 +10,19 @@
     "serve": "vite preview --port 3000",
     "deploy": "npm run build"
   },
-  "keywords": ["education", "ai", "neuroscience", "gamification", "brazil"],
+  "keywords": [
+    "education",
+    "ai",
+    "neuroscience",
+    "gamification",
+    "brazil"
+  ],
   "author": "Lumenis Academy Team",
   "license": "MIT",
   "devDependencies": {
     "vite": "^5.4.2"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0"
+    "@supabase/supabase-js": "^2.56.0"
   }
 }
