@@ -1,0 +1,90 @@
+# ===== LUMENIS ACADEMY API SECURITY =====
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Security Headers
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https:;"
+
+# HTTPS Redirect (uncomment in production)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# API Routes
+RewriteRule ^auth/(.*)$ auth.php [QSA,L]
+RewriteRule ^courses/(.*)$ courses.php [QSA,L]
+RewriteRule ^neural/(.*)$ neural.php [QSA,L]
+RewriteRule ^payments/(.*)$ payments.php [QSA,L]
+RewriteRule ^forum/(.*)$ forum.php [QSA,L]
+RewriteRule ^library/(.*)$ library.php [QSA,L]
+
+# Block access to sensitive files
+<FilesMatch "\.(sql|log|env|config)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to PHP files directly (except API endpoints)
+<FilesMatch "^(config|database)\.php$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Rate limiting (requires mod_evasive)
+<IfModule mod_evasive24.c>
+    DOSHashTableSize    2048
+    DOSPageCount        10
+    DOSPageInterval     1
+    DOSSiteCount        50
+    DOSSiteInterval     1
+    DOSBlockingPeriod   600
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# Cache Control
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType application/json "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+</IfModule>
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|tmp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Custom error pages
+ErrorDocument 400 /api/errors/400.php
+ErrorDocument 401 /api/errors/401.php
+ErrorDocument 403 /api/errors/403.php
+ErrorDocument 404 /api/errors/404.php
+ErrorDocument 500 /api/errors/500.php

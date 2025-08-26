@@ -1,0 +1,951 @@
+/* ===== MODULE SPECIFIC STYLES ===== */
+.module-container {
+    min-height: 100vh;
+    background: var(--deep-space);
+    color: var(--light-matter);
+}
+
+.module-header {
+    background: linear-gradient(135deg, var(--dark-matter), var(--deep-space));
+    padding: 2rem 5%;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.module-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neon-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.back-btn:hover {
+    background: rgba(124, 58, 237, 0.1);
+    transform: translateX(-5px);
+}
+
+.module-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 8px;
+    background: rgba(124, 58, 237, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-accent), var(--quantum-pink));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--neon-accent);
+}
+
+.module-title h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--pure-white), var(--neon-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.module-title p {
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+
+.module-content {
+    display: flex;
+    min-height: calc(100vh - 200px);
+}
+
+/* ===== LESSON SIDEBAR ===== */
+.lesson-sidebar {
+    width: 350px;
+    background: rgba(15, 23, 42, 0.8);
+    border-right: 1px solid rgba(124, 58, 237, 0.3);
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.module-info {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.module-info h3 {
+    color: var(--pure-white);
+    margin-bottom: 0.5rem;
+}
+
+.module-info p {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.lesson-nav {
+    margin-bottom: 2rem;
+}
+
+.lesson-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    margin-bottom: 0.5rem;
+    border: 1px solid transparent;
+}
+
+.lesson-item:hover {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.3);
+}
+
+.lesson-item.active {
+    background: rgba(124, 58, 237, 0.2);
+    border-color: var(--neon-accent);
+}
+
+.lesson-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(124, 58, 237, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neon-accent);
+    font-size: 1.2rem;
+}
+
+.lesson-item.active .lesson-icon {
+    background: var(--neon-accent);
+    color: var(--pure-white);
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-info h4 {
+    color: var(--pure-white);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+}
+
+.lesson-info span {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.lesson-status {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.lesson-status.completed {
+    background: var(--success-green);
+    color: var(--pure-white);
+}
+
+.lesson-status:not(.completed) {
+    background: rgba(124, 58, 237, 0.2);
+    color: var(--light-matter);
+    opacity: 0.5;
+}
+
+/* ===== NEURAL PANEL ===== */
+.neural-panel {
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.neural-panel h4 {
+    color: var(--neon-accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.neural-metric {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.neural-metric span:first-child {
+    min-width: 80px;
+    font-size: 0.9rem;
+}
+
+.metric-bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(124, 58, 237, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-accent), var(--quantum-pink));
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.neural-metric span:last-child {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--neon-accent);
+    min-width: 35px;
+}
+
+/* ===== LESSON CONTENT ===== */
+.lesson-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.lesson-view {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.lesson-header {
+    margin-bottom: 2rem;
+}
+
+.lesson-header h2 {
+    color: var(--pure-white);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.lesson-meta {
+    display: flex;
+    gap: 2rem;
+    opacity: 0.8;
+}
+
+.lesson-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* ===== VIDEO CONTAINER ===== */
+.video-container {
+    position: relative;
+    background: var(--void-black);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-cosmic);
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-container:hover .video-controls {
+    opacity: 1;
+}
+
+.video-btn {
+    background: none;
+    border: none;
+    color: var(--pure-white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.video-btn:hover {
+    background: rgba(124, 58, 237, 0.3);
+}
+
+.video-progress {
+    flex: 1;
+}
+
+.video-progress .progress-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.video-progress .progress-fill {
+    background: var(--neon-accent);
+}
+
+/* ===== LESSON DESCRIPTION ===== */
+.lesson-description {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.lesson-description h3 {
+    color: var(--pure-white);
+    margin-bottom: 1rem;
+}
+
+.lesson-description p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.learning-objectives h4 {
+    color: var(--neon-accent);
+    margin-bottom: 1rem;
+}
+
+.learning-objectives ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.learning-objectives li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.learning-objectives li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--neon-accent);
+}
+
+/* ===== INTERACTIVE CONTENT ===== */
+.interactive-content {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.interactive-content h3 {
+    color: var(--pure-white);
+    margin-bottom: 1.5rem;
+}
+
+.math-exercise {
+    text-align: center;
+}
+
+.exercise-question h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--neon-accent);
+}
+
+.answer-input {
+    width: 150px;
+    padding: 0.75rem;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.8);
+    color: var(--light-matter);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 1rem;
+}
+
+.answer-input:focus {
+    outline: none;
+    border-color: var(--neon-accent);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+.check-answer {
+    margin-left: 1rem;
+}
+
+.exercise-feedback {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.exercise-feedback.correct {
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--success-green);
+    opacity: 1;
+}
+
+.exercise-feedback.incorrect {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger-red);
+    opacity: 1;
+}
+
+/* ===== NEURAL SIMULATOR ===== */
+.neural-simulator {
+    text-align: center;
+    padding: 2rem;
+}
+
+.brain-visualization {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.neuron {
+    width: 60px;
+    height: 60px;
+    background: var(--neon-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pure-white);
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    animation: neuronPulse 2s infinite;
+}
+
+.neuron.active {
+    box-shadow: 0 0 20px var(--neon-accent);
+}
+
+.connection {
+    width: 40px;
+    height: 2px;
+    background: var(--neon-accent);
+    position: relative;
+    animation: connectionFlow 2s infinite;
+}
+
+.connection::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: -3px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid var(--neon-accent);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+.result-neuron {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--success-green), var(--neural-cyan));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pure-white);
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 0 25px var(--success-green);
+    animation: resultGlow 2s infinite;
+}
+
+@keyframes neuronPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes connectionFlow {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; box-shadow: 0 0 10px var(--neon-accent); }
+    100% { opacity: 0.5; }
+}
+
+@keyframes resultGlow {
+    0%, 100% { box-shadow: 0 0 25px var(--success-green); }
+    50% { box-shadow: 0 0 35px var(--success-green), 0 0 50px rgba(16, 185, 129, 0.5); }
+}
+
+/* ===== EXERCISE CONTAINER ===== */
+.exercise-container {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.exercise-header h3 {
+    color: var(--pure-white);
+}
+
+.exercise-progress {
+    background: rgba(124, 58, 237, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--neon-accent);
+}
+
+.exercise-content {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.exercise-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+/* ===== LESSON ACTIONS ===== */
+.lesson-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* ===== AI TUTOR PANEL ===== */
+.ai-tutor-panel {
+    position: fixed;
+    right: -400px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    height: 500px;
+    background: var(--deep-space);
+    border: 1px solid var(--neon-accent);
+    border-radius: 16px;
+    box-shadow: var(--shadow-cosmic);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-tutor-panel.open {
+    right: 2rem;
+}
+
+.tutor-header {
+    padding: 1rem;
+    background: rgba(124, 58, 237, 0.2);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.tutor-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--neon-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pure-white);
+    font-size: 1.2rem;
+}
+
+.tutor-info {
+    flex: 1;
+}
+
+.tutor-info h4 {
+    color: var(--pure-white);
+    margin-bottom: 0.25rem;
+}
+
+.tutor-status {
+    font-size: 0.8rem;
+    color: var(--success-green);
+}
+
+.close-tutor {
+    background: none;
+    border: none;
+    color: var(--light-matter);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.close-tutor:hover {
+    background: rgba(124, 58, 237, 0.3);
+    color: var(--neon-accent);
+}
+
+.tutor-conversation {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tutor-message {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.message-avatar {
+    width: 30px;
+    height: 30px;
+    background: var(--neon-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pure-white);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background: rgba(124, 58, 237, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    flex: 1;
+}
+
+.message-content p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.user-message {
+    align-self: flex-end;
+}
+
+.user-message .message-content {
+    background: rgba(6, 182, 212, 0.2);
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 12px;
+}
+
+.tutor-input {
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-top: 1px solid rgba(124, 58, 237, 0.3);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tutor-input input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 20px;
+    background: rgba(124, 58, 237, 0.1);
+    color: var(--light-matter);
+    font-size: 0.9rem;
+}
+
+.tutor-input input:focus {
+    outline: none;
+    border-color: var(--neon-accent);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--neon-accent);
+    border: none;
+    border-radius: 50%;
+    color: var(--pure-white);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send-btn:hover {
+    background: var(--quantum-pink);
+    transform: scale(1.05);
+}
+
+/* ===== FLOATING AI BUTTON ===== */
+.floating-ai-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--neon-accent), var(--quantum-pink));
+    border: none;
+    border-radius: 50%;
+    color: var(--pure-white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    z-index: 999;
+}
+
+.floating-ai-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(124, 58, 237, 0.6);
+}
+
+.floating-ai-btn.active {
+    background: linear-gradient(135deg, var(--success-green), var(--neural-cyan));
+}
+
+/* ===== NOTES PANEL ===== */
+.notes-panel {
+    position: fixed;
+    left: -350px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 320px;
+    height: 400px;
+    background: var(--deep-space);
+    border: 1px solid var(--neon-accent);
+    border-radius: 16px;
+    box-shadow: var(--shadow-cosmic);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.notes-panel.open {
+    left: 2rem;
+}
+
+.notes-header {
+    padding: 1rem;
+    background: rgba(124, 58, 237, 0.2);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notes-header h4 {
+    color: var(--neon-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.close-notes {
+    background: none;
+    border: none;
+    color: var(--light-matter);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.close-notes:hover {
+    background: rgba(124, 58, 237, 0.3);
+    color: var(--neon-accent);
+}
+
+.notes-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.notes-content textarea {
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 8px;
+    color: var(--light-matter);
+    padding: 1rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: none;
+}
+
+.notes-content textarea:focus {
+    outline: none;
+    border-color: var(--neon-accent);
+}
+
+.notes-actions {
+    padding: 1rem;
+    border-top: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+    .lesson-sidebar {
+        width: 300px;
+    }
+    
+    .ai-tutor-panel {
+        width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .module-content {
+        flex-direction: column;
+    }
+    
+    .lesson-sidebar {
+        width: 100%;
+        order: 2;
+        max-height: 300px;
+    }
+    
+    .lesson-content {
+        order: 1;
+    }
+    
+    .module-nav {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .ai-tutor-panel {
+        right: -100%;
+        width: 90%;
+        max-width: 350px;
+    }
+    
+    .ai-tutor-panel.open {
+        right: 5%;
+    }
+    
+    .notes-panel {
+        left: -100%;
+        width: 90%;
+        max-width: 320px;
+    }
+    
+    .notes-panel.open {
+        left: 5%;
+    }
+    
+    .floating-ai-btn {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .module-header {
+        padding: 1rem 5%;
+    }
+    
+    .module-title h1 {
+        font-size: 2rem;
+    }
+    
+    .lesson-content {
+        padding: 1rem;
+    }
+    
+    .brain-visualization {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .connection {
+        width: 2px;
+        height: 40px;
+        transform: rotate(90deg);
+    }
+    
+    .neuron,
+    .result-neuron {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}

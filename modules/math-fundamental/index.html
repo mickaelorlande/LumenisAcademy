@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática Fundamental - Lumenis Academy</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="module-container">
+        <!-- Module Header -->
+        <header class="module-header">
+            <div class="module-nav">
+                <a href="../../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+                </a>
+                <div class="module-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="moduleProgress" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text">0% Concluído</span>
+                </div>
+            </div>
+            <div class="module-title">
+                <h1>Matemática Fundamental</h1>
+                <p>Construindo bases sólidas com neurociência aplicada</p>
+            </div>
+        </header>
+
+        <!-- Module Content -->
+        <main class="module-content">
+            <!-- Lesson Navigation -->
+            <aside class="lesson-sidebar">
+                <div class="module-info">
+                    <h3>Módulo 1: Operações Básicas</h3>
+                    <p>4 lições • 1h 20min</p>
+                </div>
+                
+                <nav class="lesson-nav">
+                    <div class="lesson-item active" data-lesson="1">
+                        <div class="lesson-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Introdução à Matemática</h4>
+                            <span>15 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status completed">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="2">
+                        <div class="lesson-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Adição e Subtração</h4>
+                            <span>18 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="3">
+                        <div class="lesson-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Multiplicação e Divisão</h4>
+                            <span>22 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="4">
+                        <div class="lesson-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Exercícios Práticos</h4>
+                            <span>25 min • Exercícios</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Neural Metrics Panel -->
+                <div class="neural-panel">
+                    <h4><i class="fas fa-brain"></i> Métricas Neurais</h4>
+                    <div class="neural-metric">
+                        <span>Foco</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 85%"></div>
+                        </div>
+                        <span>85%</span>
+                    </div>
+                    <div class="neural-metric">
+                        <span>Engajamento</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 78%"></div>
+                        </div>
+                        <span>78%</span>
+                    </div>
+                    <div class="neural-metric">
+                        <span>Compreensão</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="width: 92%"></div>
+                        </div>
+                        <span>92%</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Lesson Content -->
+            <section class="lesson-content">
+                <!-- Lesson 1: Introduction Video -->
+                <div class="lesson-view active" id="lesson-1">
+                    <div class="lesson-header">
+                        <h2>Introdução à Matemática Fundamental</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 15 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Básico</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container">
+                        <video controls poster="https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg">
+                            <source src="videos/intro-matematica.mp4" type="video/mp4">
+                            <p>Seu navegador não suporta vídeo HTML5.</p>
+                        </video>
+                        <div class="video-controls">
+                            <button class="video-btn" id="playPauseBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="video-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="videoProgress"></div>
+                                </div>
+                            </div>
+                            <button class="video-btn" id="fullscreenBtn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-description">
+                        <h3>Sobre esta lição</h3>
+                        <p>Nesta introdução, você descobrirá como a matemática está presente em nosso dia a dia e como nosso cérebro processa informações numéricas. Baseado em pesquisas neurocientíficas, este conteúdo foi desenvolvido para otimizar sua capacidade de aprendizado matemático.</p>
+                        
+                        <div class="learning-objectives">
+                            <h4>Objetivos de Aprendizado</h4>
+                            <ul>
+                                <li>Compreender a importância da matemática no cotidiano</li>
+                                <li>Identificar padrões numéricos básicos</li>
+                                <li>Desenvolver confiança em habilidades matemáticas</li>
+                                <li>Ativar circuitos neurais de processamento numérico</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-actions">
+                        <button class="btn btn-outline" id="takeNotesBtn">
+                            <i class="fas fa-sticky-note"></i> Fazer Anotações
+                        </button>
+                        <button class="btn btn-solid" id="completeLesson1">
+                            Marcar como Concluída
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 2: Addition and Subtraction -->
+                <div class="lesson-view" id="lesson-2" style="display: none;">
+                    <div class="lesson-header">
+                        <h2>Adição e Subtração</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 18 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Básico</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container">
+                        <video controls poster="https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg">
+                            <source src="videos/adicao-subtracao.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="interactive-content">
+                        <h3>Prática Interativa</h3>
+                        <div class="math-exercise">
+                            <div class="exercise-question">
+                                <h4>Resolva: 15 + 27 = ?</h4>
+                                <input type="number" id="answer1" class="answer-input" placeholder="Sua resposta">
+                                <button class="btn btn-solid check-answer" data-correct="42">Verificar</button>
+                            </div>
+                            <div class="exercise-feedback" id="feedback1"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 3: Multiplication and Division -->
+                <div class="lesson-view" id="lesson-3" style="display: none;">
+                    <div class="lesson-header">
+                        <h2>Multiplicação e Divisão</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 22 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Intermediário</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container">
+                        <video controls poster="https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg">
+                            <source src="videos/multiplicacao-divisao.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                    <div class="interactive-content">
+                        <h3>Simulador Neural de Multiplicação</h3>
+                        <div class="neural-simulator">
+                            <div class="brain-visualization">
+                                <div class="neuron active" data-value="8"></div>
+                                <div class="neuron active" data-value="6"></div>
+                                <div class="connection"></div>
+                                <div class="result-neuron" data-result="48"></div>
+                            </div>
+                            <p>Veja como seu cérebro processa: 8 × 6 = 48</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lesson 4: Practical Exercises -->
+                <div class="lesson-view" id="lesson-4" style="display: none;">
+                    <div class="lesson-header">
+                        <h2>Exercícios Práticos</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 25 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Aplicação</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-container">
+                        <div class="exercise-header">
+                            <h3>Desafio Neural: Problemas do Cotidiano</h3>
+                            <div class="exercise-progress">
+                                <span>Questão <span id="currentQuestion">1</span> de <span id="totalQuestions">5</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="exercise-content" id="exerciseContent">
+                            <!-- Exercises will be loaded dynamically -->
+                        </div>
+                        
+                        <div class="exercise-actions">
+                            <button class="btn btn-outline" id="prevQuestion" disabled>
+                                <i class="fas fa-chevron-left"></i> Anterior
+                            </button>
+                            <button class="btn btn-solid" id="nextQuestion">
+                                Próxima <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- AI Tutor Panel -->
+        <div class="ai-tutor-panel" id="aiTutorPanel">
+            <div class="tutor-header">
+                <div class="tutor-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="tutor-info">
+                    <h4>Lumenis AI</h4>
+                    <span class="tutor-status">Online</span>
+                </div>
+                <button class="close-tutor" id="closeTutor">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="tutor-conversation" id="tutorConversation">
+                <div class="tutor-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Olá! Sou seu tutor IA especializado em matemática. Estou aqui para ajudar você a dominar os conceitos fundamentais. Como posso ajudar?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tutor-input">
+                <input type="text" id="tutorInput" placeholder="Digite sua dúvida sobre matemática...">
+                <button class="send-btn" id="sendTutorMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating AI Button -->
+        <button class="floating-ai-btn" id="floatingAI">
+            <i class="fas fa-robot"></i>
+        </button>
+
+        <!-- Notes Panel -->
+        <div class="notes-panel" id="notesPanel" style="display: none;">
+            <div class="notes-header">
+                <h4><i class="fas fa-sticky-note"></i> Minhas Anotações</h4>
+                <button class="close-notes" id="closeNotes">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="notes-content">
+                <textarea id="notesTextarea" placeholder="Faça suas anotações aqui..."></textarea>
+            </div>
+            <div class="notes-actions">
+                <button class="btn btn-outline" id="saveNotes">
+                    <i class="fas fa-save"></i> Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="module.js"></script>
+</body>
+</html>

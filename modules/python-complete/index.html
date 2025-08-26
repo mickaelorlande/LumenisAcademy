@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Completo - Lumenis Academy</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="module.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <div class="module-container">
+        <!-- Module Header -->
+        <header class="module-header premium">
+            <div class="premium-badge">
+                <i class="fas fa-crown"></i> Conteúdo Premium
+            </div>
+            <div class="module-nav">
+                <a href="../../index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Voltar ao Dashboard
+                </a>
+                <div class="module-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="moduleProgress" style="width: 15%"></div>
+                    </div>
+                    <span class="progress-text">15% Concluído</span>
+                </div>
+            </div>
+            <div class="module-title">
+                <h1>Python Completo - Do Zero ao Avançado</h1>
+                <p>Domine Python com metodologia neurocientífica e projetos práticos</p>
+            </div>
+        </header>
+
+        <!-- Module Content -->
+        <main class="module-content">
+            <!-- Course Sidebar -->
+            <aside class="course-sidebar">
+                <div class="course-info">
+                    <h3>Módulo 1: Fundamentos do Python</h3>
+                    <p>8 lições • 4h 30min</p>
+                    <div class="module-stats">
+                        <span><i class="fas fa-users"></i> 5.4k alunos</span>
+                        <span><i class="fas fa-star"></i> 4.9</span>
+                    </div>
+                </div>
+                
+                <nav class="lesson-nav">
+                    <div class="lesson-item active" data-lesson="1">
+                        <div class="lesson-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Instalação e Configuração</h4>
+                            <span>15 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status completed">
+                            <i class="fas fa-check"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="2">
+                        <div class="lesson-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Sintaxe Básica</h4>
+                            <span>25 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status current">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="3">
+                        <div class="lesson-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Primeiro Projeto</h4>
+                            <span>45 min • Prática</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="4">
+                        <div class="lesson-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Variáveis e Tipos</h4>
+                            <span>30 min • Vídeo</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-item" data-lesson="5">
+                        <div class="lesson-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="lesson-info">
+                            <h4>Estruturas Condicionais</h4>
+                            <span>35 min • Prática</span>
+                        </div>
+                        <div class="lesson-status">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Advanced Neural Panel -->
+                <div class="neural-panel premium">
+                    <h4><i class="fas fa-brain"></i> IA Neural Avançada</h4>
+                    <div class="neural-metric">
+                        <span>Lógica de Programação</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill programming" style="width: 78%"></div>
+                        </div>
+                        <span>78%</span>
+                    </div>
+                    <div class="neural-metric">
+                        <span>Pensamento Algorítmico</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill algorithmic" style="width: 65%"></div>
+                        </div>
+                        <span>65%</span>
+                    </div>
+                    <div class="neural-metric">
+                        <span>Resolução de Problemas</span>
+                        <div class="metric-bar">
+                            <div class="metric-fill problem-solving" style="width: 82%"></div>
+                        </div>
+                        <span>82%</span>
+                    </div>
+                    
+                    <div class="ai-insights">
+                        <h5><i class="fas fa-lightbulb"></i> Insights da IA</h5>
+                        <p class="insight">Seu padrão de aprendizado indica alta capacidade lógica. Recomendo acelerar para conceitos avançados!</p>
+                    </div>
+                </div>
+                
+                <!-- Code Playground -->
+                <div class="code-playground">
+                    <h4><i class="fas fa-terminal"></i> Playground Python</h4>
+                    <div class="code-editor" id="codeEditor">
+                        <textarea id="pythonCode" placeholder="# Digite seu código Python aqui
+print('Olá, Lumenis Academy!')"></textarea>
+                    </div>
+                    <div class="playground-actions">
+                        <button class="btn btn-solid run-code" id="runCode">
+                            <i class="fas fa-play"></i> Executar
+                        </button>
+                        <button class="btn btn-outline clear-code" id="clearCode">
+                            <i class="fas fa-trash"></i> Limpar
+                        </button>
+                    </div>
+                    <div class="code-output" id="codeOutput">
+                        <div class="output-header">
+                            <i class="fas fa-terminal"></i> Saída do Código
+                        </div>
+                        <pre id="outputContent">Clique em "Executar" para ver o resultado...</pre>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Lesson Content -->
+            <section class="lesson-content">
+                <!-- Lesson 2: Python Syntax -->
+                <div class="lesson-view active" id="lesson-2">
+                    <div class="lesson-header">
+                        <h2>Sintaxe Básica do Python</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 25 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Básico</span>
+                            <span><i class="fas fa-crown"></i> Premium</span>
+                        </div>
+                    </div>
+                    
+                    <div class="video-container premium">
+                        <video controls poster="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg">
+                            <source src="videos/python-sintaxe.mp4" type="video/mp4">
+                            <p>Seu navegador não suporta vídeo HTML5.</p>
+                        </video>
+                        <div class="premium-overlay">
+                            <i class="fas fa-crown"></i>
+                            <p>Conteúdo Premium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-content-text">
+                        <h3>Fundamentos da Sintaxe Python</h3>
+                        <p>Python é conhecido por sua sintaxe limpa e legível. Nesta lição, você aprenderá os conceitos fundamentais que tornam Python uma das linguagens mais populares do mundo.</p>
+                        
+                        <div class="code-example">
+                            <h4>Exemplo Prático: Primeiro Programa</h4>
+                            <pre><code class="language-python"># Seu primeiro programa Python
+print("Bem-vindo à Lumenis Academy!")
+
+# Variáveis básicas
+nome = "Estudante"
+idade = 25
+altura = 1.75
+
+# Exibindo informações
+print(f"Olá, {nome}!")
+print(f"Você tem {idade} anos e {altura}m de altura.")
+
+# Operações matemáticas
+resultado = idade * 2
+print(f"Sua idade dobrada é: {resultado}")
+</code></pre>
+                        </div>
+                        
+                        <div class="neural-explanation">
+                            <h4><i class="fas fa-brain"></i> Como seu cérebro processa código</h4>
+                            <p>Quando você lê código Python, seu córtex pré-frontal ativa as mesmas áreas usadas para linguagem natural. A sintaxe limpa do Python reduz a carga cognitiva, permitindo que você foque na lógica do problema.</p>
+                            
+                            <div class="brain-activity">
+                                <div class="brain-region active" data-region="prefrontal">
+                                    <span>Córtex Pré-frontal</span>
+                                    <div class="activity-level" style="width: 85%"></div>
+                                </div>
+                                <div class="brain-region active" data-region="temporal">
+                                    <span>Lobo Temporal</span>
+                                    <div class="activity-level" style="width: 70%"></div>
+                                </div>
+                                <div class="brain-region active" data-region="parietal">
+                                    <span>Lobo Parietal</span>
+                                    <div class="activity-level" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="interactive-challenge">
+                            <h4>Desafio Neural: Modifique o Código</h4>
+                            <p>Tente modificar o código acima para incluir sua própria informação. Use o playground ao lado!</p>
+                            
+                            <div class="challenge-objectives">
+                                <h5>Objetivos:</h5>
+                                <ul>
+                                    <li>Altere a variável 'nome' para seu nome</li>
+                                    <li>Modifique a idade para sua idade real</li>
+                                    <li>Adicione uma nova variável 'cidade'</li>
+                                    <li>Crie uma mensagem personalizada</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-actions">
+                        <button class="btn btn-outline" id="downloadPDF">
+                            <i class="fas fa-download"></i> Baixar PDF
+                        </button>
+                        <button class="btn btn-outline" id="takeNotesBtn">
+                            <i class="fas fa-sticky-note"></i> Anotações
+                        </button>
+                        <button class="btn btn-solid" id="completeLesson2">
+                            Marcar como Concluída
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lesson 3: First Project -->
+                <div class="lesson-view" id="lesson-3" style="display: none;">
+                    <div class="lesson-header">
+                        <h2>Primeiro Projeto: Calculadora Neural</h2>
+                        <div class="lesson-meta">
+                            <span><i class="fas fa-clock"></i> 45 minutos</span>
+                            <span><i class="fas fa-brain"></i> Nível Neural: Aplicação</span>
+                            <span><i class="fas fa-crown"></i> Premium</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-container">
+                        <div class="project-description">
+                            <h3>Projeto: Calculadora com IA Neural</h3>
+                            <p>Vamos criar uma calculadora que não apenas faz cálculos, mas também aprende com seus padrões de uso e sugere operações baseadas em neurociência.</p>
+                            
+                            <div class="project-objectives">
+                                <h4>O que você vai aprender:</h4>
+                                <ul>
+                                    <li>Estruturas condicionais (if/elif/else)</li>
+                                    <li>Loops e repetições</li>
+                                    <li>Funções e modularização</li>
+                                    <li>Tratamento de erros</li>
+                                    <li>Interface básica com usuário</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="code-workspace">
+                            <div class="workspace-tabs">
+                                <button class="tab-btn active" data-tab="main">main.py</button>
+                                <button class="tab-btn" data-tab="neural">neural_calc.py</button>
+                                <button class="tab-btn" data-tab="utils">utils.py</button>
+                            </div>
+                            
+                            <div class="code-editor-container">
+                                <div class="tab-content active" id="tab-main">
+                                    <pre><code class="language-python"># Calculadora Neural - Lumenis Academy
+# Projeto prático de Python com IA
+
+import neural_calc
+import utils
+
+def main():
+    print("🧠 Calculadora Neural Lumenis")
+    print("=" * 40)
+    
+    while True:
+        try:
+            # Menu de opções
+            print("\nEscolha uma operação:")
+            print("1. Adição (+)")
+            print("2. Subtração (-)")
+            print("3. Multiplicação (*)")
+            print("4. Divisão (/)")
+            print("5. Análise Neural")
+            print("0. Sair")
+            
+            opcao = input("\nSua escolha: ")
+            
+            if opcao == "0":
+                print("Obrigado por usar a Calculadora Neural!")
+                break
+            elif opcao in ["1", "2", "3", "4"]:
+                resultado = realizar_calculo(opcao)
+                neural_calc.analisar_padrao(opcao, resultado)
+            elif opcao == "5":
+                neural_calc.mostrar_analise()
+            else:
+                print("Opção inválida! Tente novamente.")
+                
+        except KeyboardInterrupt:
+            print("\n\nSaindo da calculadora...")
+            break
+        except Exception as e:
+            print(f"Erro inesperado: {e}")
+
+def realizar_calculo(opcao):
+    operacoes = {
+        "1": ("+", lambda x, y: x + y),
+        "2": ("-", lambda x, y: x - y),
+        "3": ("*", lambda x, y: x * y),
+        "4": ("/", lambda x, y: x / y if y != 0 else "Erro: Divisão por zero!")
+    }
+    
+    simbolo, funcao = operacoes[opcao]
+    
+    try:
+        num1 = float(input("Digite o primeiro número: "))
+        num2 = float(input("Digite o segundo número: "))
+        
+        resultado = funcao(num1, num2)
+        
+        print(f"\n🧮 Resultado: {num1} {simbolo} {num2} = {resultado}")
+        
+        # Explicação neural
+        utils.explicar_processo_neural(simbolo, num1, num2, resultado)
+        
+        return resultado
+        
+    except ValueError:
+        print("Erro: Digite apenas números!")
+        return None
+    except Exception as e:
+        print(f"Erro no cálculo: {e}")
+        return None
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+                                </div>
+                                
+                                <div class="tab-content" id="tab-neural" style="display: none;">
+                                    <pre><code class="language-python"># neural_calc.py - Módulo de Análise Neural
+# Simula como o cérebro processa operações matemáticas
+
+import time
+from collections import defaultdict
+
+# Armazena padrões de uso
+padroes_uso = defaultdict(int)
+historico_calculos = []
+
+def analisar_padrao(operacao, resultado):
+    """Analisa padrões neurais de uso da calculadora"""
+    padroes_uso[operacao] += 1
+    
+    historico_calculos.append({
+        'operacao': operacao,
+        'resultado': resultado,
+        'timestamp': time.time()
+    })
+    
+    # Simula análise neural
+    print(f"\n🧠 Análise Neural:")
+    print(f"   Dopamina: +{calcular_dopamina(resultado)}%")
+    print(f"   Acetilcolina: {calcular_foco()}%")
+    print(f"   Padrão detectado: {detectar_padrao(operacao)}")
+
+def calcular_dopamina(resultado):
+    """Simula liberação de dopamina baseada no resultado"""
+    if isinstance(resultado, (int, float)):
+        if resultado > 0:
+            return min(15, int(resultado / 10))
+        else:
+            return 5
+    return 3
+
+def calcular_foco():
+    """Simula nível de foco baseado na atividade"""
+    import random
+    base_focus = 75
+    variation = random.randint(-10, 15)
+    return max(60, min(100, base_focus + variation))
+
+def detectar_padrao(operacao):
+    """Detecta padrões de preferência do usuário"""
+    operacoes_nomes = {
+        "1": "Adição",
+        "2": "Subtração", 
+        "3": "Multiplicação",
+        "4": "Divisão"
+    }
+    
+    mais_usada = max(padroes_uso.items(), key=lambda x: x[1], default=("1", 0))
+    
+    if mais_usada[1] > 3:
+        return f"Preferência por {operacoes_nomes.get(mais_usada[0], 'Desconhecida')}"
+    else:
+        return "Explorando diferentes operações"
+
+def mostrar_analise():
+    """Mostra análise completa dos padrões neurais"""
+    print("\n🔬 ANÁLISE NEURAL COMPLETA")
+    print("=" * 50)
+    
+    if not historico_calculos:
+        print("Nenhum dado disponível ainda. Faça alguns cálculos primeiro!")
+        return
+    
+    print(f"📊 Total de operações: {len(historico_calculos)}")
+    print(f"🎯 Operação favorita: {detectar_padrao('')}")
+    
+    # Análise temporal
+    if len(historico_calculos) > 1:
+        tempo_medio = calcular_tempo_medio()
+        print(f"⏱️  Tempo médio entre operações: {tempo_medio:.1f}s")
+        
+        if tempo_medio < 10:
+            print("   🚀 Velocidade alta - cérebro em modo foco!")
+        elif tempo_medio < 30:
+            print("   🧠 Velocidade normal - processamento equilibrado")
+        else:
+            print("   🤔 Velocidade reflexiva - análise profunda")
+    
+    print(f"\n💡 Recomendação Neural:")
+    gerar_recomendacao()
+
+def calcular_tempo_medio():
+    """Calcula tempo médio entre operações"""
+    if len(historico_calculos) < 2:
+        return 0
+    
+    tempos = []
+    for i in range(1, len(historico_calculos)):
+        tempo_diff = historico_calculos[i]['timestamp'] - historico_calculos[i-1]['timestamp']
+        tempos.append(tempo_diff)
+    
+    return sum(tempos) / len(tempos)
+
+def gerar_recomendacao():
+    """Gera recomendações baseadas em padrões neurais"""
+    total_ops = len(historico_calculos)
+    
+    if total_ops < 5:
+        print("   Continue praticando para desenvolver padrões neurais!")
+    elif total_ops < 15:
+        print("   Seu cérebro está criando conexões! Tente operações mais complexas.")
+    else:
+        print("   Excelente! Você está desenvolvendo fluência matemática neural.")
+        print("   Recomendo avançar para funções e estruturas de dados!")
+</code></pre>
+                                </div>
+                                
+                                <div class="tab-content" id="tab-utils" style="display: none;">
+                                    <pre><code class="language-python"># utils.py - Utilitários e Explicações Neurais
+
+def explicar_processo_neural(operacao, num1, num2, resultado):
+    """Explica como o cérebro processa cada operação"""
+    
+    explicacoes = {
+        "+": {
+            "processo": "Adição ativa o córtex parietal inferior",
+            "neural": "Seu cérebro combina quantidades usando redes neurais especializadas",
+            "dica": "Visualize os números como objetos físicos sendo combinados"
+        },
+        "-": {
+            "processo": "Subtração envolve inibição neural controlada",
+            "neural": "O cérebro 'remove' quantidades usando circuitos inibitórios",
+            "dica": "Pense em retirar objetos de um conjunto maior"
+        },
+        "*": {
+            "processo": "Multiplicação usa memória de trabalho e padrões",
+            "neural": "Combina adição repetida com reconhecimento de padrões",
+            "dica": "Visualize grupos repetidos ou use a tabuada memorizada"
+        },
+        "/": {
+            "processo": "Divisão ativa resolução de problemas complexa",
+            "neural": "Envolve múltiplas áreas: memória, lógica e estimativa",
+            "dica": "Pense em distribuir igualmente ou quantas vezes cabe"
+        }
+    }
+    
+    if operacao in explicacoes:
+        exp = explicacoes[operacao]
+        print(f"\n🧠 Processo Neural:")
+        print(f"   {exp['processo']}")
+        print(f"   {exp['neural']}")
+        print(f"💡 Dica de aprendizado: {exp['dica']}")
+
+def gerar_exercicio_personalizado(nivel_atual):
+    """Gera exercícios baseados no nível neural atual"""
+    import random
+    
+    if nivel_atual < 50:
+        # Exercícios básicos
+        num1 = random.randint(1, 20)
+        num2 = random.randint(1, 20)
+        operacao = random.choice(['+', '-'])
+    elif nivel_atual < 80:
+        # Exercícios intermediários
+        num1 = random.randint(10, 100)
+        num2 = random.randint(10, 100)
+        operacao = random.choice(['+', '-', '*'])
+    else:
+        # Exercícios avançados
+        num1 = random.randint(50, 500)
+        num2 = random.randint(10, 50)
+        operacao = random.choice(['+', '-', '*', '/'])
+    
+    if operacao == '+':
+        resposta = num1 + num2
+    elif operacao == '-':
+        resposta = num1 - num2
+    elif operacao == '*':
+        resposta = num1 * num2
+    elif operacao == '/' and num2 != 0:
+        resposta = round(num1 / num2, 2)
+    
+    return {
+        'pergunta': f"{num1} {operacao} {num2} = ?",
+        'resposta': resposta,
+        'dificuldade': nivel_atual
+    }
+
+def mostrar_progresso_neural(metricas):
+    """Visualiza progresso neural do usuário"""
+    print("\n📈 PROGRESSO NEURAL")
+    print("=" * 30)
+    
+    for metrica, valor in metricas.items():
+        barra = "█" * int(valor/5) + "░" * (20 - int(valor/5))
+        print(f"{metrica.capitalize():15} [{barra}] {valor}%")
+    
+    # Análise de desenvolvimento
+    media = sum(metricas.values()) / len(metricas)
+    
+    if media >= 90:
+        print("\n🌟 Status: MESTRE NEURAL!")
+        print("   Seu cérebro está operando em níveis excepcionais!")
+    elif media >= 75:
+        print("\n🚀 Status: AVANÇADO")
+        print("   Excelente desenvolvimento cognitivo!")
+    elif media >= 60:
+        print("\n📈 Status: EM CRESCIMENTO")
+        print("   Seu cérebro está se adaptando bem!")
+    else:
+        print("\n🌱 Status: INICIANTE")
+        print("   Continue praticando - a neuroplasticidade está ativa!")
+
+def calcular_neuroplasticidade(historico_performance):
+    """Calcula índice de neuroplasticidade baseado na performance"""
+    if len(historico_performance) < 3:
+        return 50  # Valor inicial
+    
+    # Analisa tendência de melhoria
+    recentes = historico_performance[-5:]  # Últimas 5 performances
+    antigas = historico_performance[-10:-5] if len(historico_performance) >= 10 else historico_performance[:-5]
+    
+    if not antigas:
+        return 60
+    
+    media_recente = sum(recentes) / len(recentes)
+    media_antiga = sum(antigas) / len(antigas)
+    
+    melhoria = ((media_recente - media_antiga) / media_antiga) * 100
+    
+    # Índice base + melhoria
+    indice = 50 + min(50, max(-20, melhoria))
+    
+    return round(indice, 1)
+
+# Funções de gamificação
+def calcular_pontos_xp(operacao, tempo_resposta, acertos_consecutivos):
+    """Calcula pontos XP baseados na performance"""
+    pontos_base = {
+        "+": 10,
+        "-": 10, 
+        "*": 15,
+        "/": 20
+    }
+    
+    pontos = pontos_base.get(operacao, 10)
+    
+    # Bônus por velocidade
+    if tempo_resposta < 5:
+        pontos += 5
+    elif tempo_resposta < 10:
+        pontos += 2
+    
+    # Bônus por sequência
+    if acertos_consecutivos > 3:
+        pontos += acertos_consecutivos * 2
+    
+    return pontos
+
+def verificar_conquistas(estatisticas_usuario):
+    """Verifica se o usuário desbloqueou novas conquistas"""
+    conquistas = []
+    
+    if estatisticas_usuario.get('total_calculos', 0) >= 100:
+        conquistas.append("🏆 Calculador Persistente - 100 cálculos realizados!")
+    
+    if estatisticas_usuario.get('acertos_consecutivos', 0) >= 10:
+        conquistas.append("🎯 Precisão Neural - 10 acertos consecutivos!")
+    
+    if estatisticas_usuario.get('tempo_medio', 60) < 5:
+        conquistas.append("⚡ Velocidade Quântica - Respostas em menos de 5s!")
+    
+    return conquistas
+</code></pre>
+                                </div>
+                            </div>
+                            
+                            <div class="workspace-actions">
+                                <button class="btn btn-solid" id="runProject">
+                                    <i class="fas fa-play"></i> Executar Projeto
+                                </button>
+                                <button class="btn btn-outline" id="downloadProject">
+                                    <i class="fas fa-download"></i> Baixar Código
+                                </button>
+                                <button class="btn btn-outline" id="shareProject">
+                                    <i class="fas fa-share"></i> Compartilhar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-output">
+                        <h4><i class="fas fa-terminal"></i> Saída do Projeto</h4>
+                        <div class="terminal-output" id="projectOutput">
+                            <div class="terminal-line">🧠 Calculadora Neural Lumenis</div>
+                            <div class="terminal-line">========================================</div>
+                            <div class="terminal-line">Projeto carregado! Clique em "Executar Projeto" para testar.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Advanced AI Tutor for Python -->
+        <div class="ai-tutor-panel premium" id="aiTutorPanel">
+            <div class="tutor-header">
+                <div class="tutor-avatar premium">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="tutor-info">
+                    <h4>Lumenis AI - Python Expert</h4>
+                    <span class="tutor-status">Especialista em Python</span>
+                </div>
+                <button class="close-tutor" id="closeTutor">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="tutor-conversation" id="tutorConversation">
+                <div class="tutor-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>🐍 Olá! Sou seu tutor especializado em Python. Posso ajudar com sintaxe, lógica, debugging e até explicar como seu cérebro processa código! O que você gostaria de aprender?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tutor-suggestions">
+                <button class="suggestion-btn" data-suggestion="syntax">Sintaxe Básica</button>
+                <button class="suggestion-btn" data-suggestion="debug">Debug de Código</button>
+                <button class="suggestion-btn" data-suggestion="neural">Processo Neural</button>
+            </div>
+            
+            <div class="tutor-input">
+                <input type="text" id="tutorInput" placeholder="Digite sua dúvida sobre Python...">
+                <button class="send-btn" id="sendTutorMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating AI Button -->
+        <button class="floating-ai-btn premium" id="floatingAI">
+            <i class="fas fa-robot"></i>
+        </button>
+
+        <!-- PDF Viewer Modal -->
+        <div class="modal" id="pdfModal">
+            <div class="modal-content pdf-modal">
+                <div class="modal-header">
+                    <h3>Material de Apoio - Python Básico</h3>
+                    <button class="close-modal" id="closePdfModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="pdf-container">
+                    <iframe src="pdfs/python-sintaxe-basica.pdf" width="100%" height="600px"></iframe>
+                </div>
+                <div class="pdf-actions">
+                    <button class="btn btn-outline" id="downloadPdfBtn">
+                        <i class="fas fa-download"></i> Baixar PDF
+                    </button>
+                    <button class="btn btn-solid" id="markPdfRead">
+                        <i class="fas fa-check"></i> Marcar como Lido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="module.js"></script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumenis Academy | O Portal do Conhecimento Autodidata</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="lumenis-logo">
+                <div class="logo-animation">
+                    <div class="cosmic-ring"></div>
+                    <div class="cosmic-ring"></div>
+                    <div class="cosmic-ring"></div>
+                    <div class="logo-core">L</div>
+                </div>
+                <h1 class="loading-title">LUMENIS ACADEMY</h1>
+                <p class="loading-slogan">O PORTAL DO CONHECIMENTO AUTODIDATA</p>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Inicializando IA Cósmica...</p>
+        </div>
+    </div>
+
+    <!-- Partículas quânticas -->
+    <div id="quantum-particles"></div>
+
+    <!-- AI Avatar Cósmico -->
+    <div class="cosmic-ai-avatar" id="cosmicAvatar">
+        <div class="avatar-container">
+            <div class="cosmic-aura"></div>
+            <div class="avatar-body">
+                <div class="avatar-core"></div>
+                <div class="avatar-eyes">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                </div>
+                <div class="avatar-mouth"></div>
+                <div class="cosmic-energy"></div>
+            </div>
+            <div class="avatar-speech-bubble" id="avatarSpeech">
+                <p>Olá! Sou Lumenis, seu mentor cósmico. Pronto para transcender os limites do conhecimento?</p>
+            </div>
+        </div>
+        <div class="avatar-controls">
+            <button class="avatar-btn" id="avatarChat"><i class="fas fa-comments"></i></button>
+            <button class="avatar-btn" id="avatarHelp"><i class="fas fa-question-circle"></i></button>
+            <button class="avatar-btn" id="avatarSettings"><i class="fas fa-cog"></i></button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader">
+        <nav class="navbar">
+            <div class="logo" id="logo">
+                <div class="logo-icon">
+                    <div class="cosmic-symbol"></div>
+                </div>
+                <div>
+                    <div class="logo-text">Lumenis Academy</div>
+                    <div class="logo-slogan">O PORTAL DO CONHECIMENTO AUTODIDATA</div>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <a href="#home" class="nav-link" data-section="home">Início</a>
+                <a href="#courses" class="nav-link" data-section="courses">Cursos</a>
+                <a href="#resources" class="nav-link" data-section="resources">Recursos</a>
+                <a href="#about" class="nav-link" data-section="about">Sobre</a>
+                <div class="user-menu" id="userMenu" style="display: none;">
+                    <div class="user-avatar" id="userAvatar">
+                        <img src="https://via.placeholder.com/40" alt="Avatar" id="userAvatarImg">
+                    </div>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#dashboard" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="#profile" data-section="profile"><i class="fas fa-user"></i> Perfil</a>
+                        <a href="#settings" data-section="settings"><i class="fas fa-cog"></i> Configurações</a>
+                        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-link" id="loginBtn">Login</a>
+                <button class="btn btn-solid" id="startNowBtn">Começar Agora</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Home Section -->
+        <section class="hero" id="home">
+            <div class="hero-content animate">
+                <h1>Revolucione sua Educação com IA Cósmica</h1>
+                <p>A plataforma educacional mais avançada do Brasil, combinando neurociência, IA adaptativa e gamificação para transformar completamente sua jornada de aprendizado.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-solid" id="exploreCoursesBtn">Explorar Cursos</button>
+                    <button class="btn btn-outline" id="startNowHeroBtn">Comece Agora</button>
+                </div>
+            </div>
+            <div class="mascote-container">
+                <div class="mascote cosmic-mascote" id="cosmicMascote">
+                    <div class="mascote-aura"></div>
+                    <div class="mascote-core">
+                        <div class="mascote-eye left"><div class="mascote-pupil"></div></div>
+                        <div class="mascote-eye right"><div class="mascote-pupil"></div></div>
+                        <div class="mascote-mouth"></div>
+                    </div>
+                    <div class="mascote-energy-field"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="section-title animate">
+                <h2>Por que a Lumenis é Revolucionária?</h2>
+                <p>Baseada em neurociência avançada e tecnologia de ponta</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>IA Neurocientífica Adaptativa</h3>
+                    <p>Sistema baseado em plasticidade cerebral que estimula dopamina, acetilcolina e serotonina para otimizar o aprendizado e criatividade.</p>
+                </div>
+                <div class="feature-card animate delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Ecossistema IoT Quântico</h3>
+                    <p>Dispositivos conectados que monitoram foco cognitivo, níveis de atenção e progresso neurológico em tempo real.</p>
+                </div>
+                <div class="feature-card animate delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamificação Neurocognitiva</h3>
+                    <p>Sistema de recompensas baseado em neurotransmissores que mantém alta motivação e engajamento contínuo.</p>
+                </div>
+                <div class="feature-card animate delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Aprendizado Multidimensional</h3>
+                    <p>Integração entre rede executiva central e rede do modo padrão para estimular criatividade e pensamento crítico.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ODS Section -->
+        <section class="ods-section">
+            <div class="section-title animate">
+                <h2>Transformando Educação, Transformando o Mundo</h2>
+                <p>Alinhados com os Objetivos de Desenvolvimento Sustentável da ONU</p>
+            </div>
+            <div class="ods-flashcards" id="odsFlashcards">
+                <div class="flashcard-container">
+                    <div class="ods-flashcard active" data-ods="3">
+                        <div class="flashcard-front">
+                            <div class="ods-number">3</div>
+                            <h3>Saúde e Bem-Estar</h3>
+                            <p>Promovemos saúde mental através de educação neurocientífica</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <h4>Nossas Iniciativas:</h4>
+                            <ul>
+                                <li>Módulos de neurociência aplicada</li>
+                                <li>Monitoramento de bem-estar cognitivo</li>
+                                <li>IA que reduz estresse de aprendizado</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ods-flashcard" data-ods="4">
+                        <div class="flashcard-front">
+                            <div class="ods-number">4</div>
+                            <h3>Educação de Qualidade</h3>
+                            <p>Educação inclusiva e equitativa com IA adaptativa</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <h4>Nossas Iniciativas:</h4>
+                            <ul>
+                                <li>Plataforma gratuita para comunidades</li>
+                                <li>IA que se adapta a diferentes estilos</li>
+                                <li>Conteúdo acessível e inclusivo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ods-flashcard" data-ods="8">
+                        <div class="flashcard-front">
+                            <div class="ods-number">8</div>
+                            <h3>Trabalho Decente</h3>
+                            <p>Preparação para empregos do futuro com IA</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <h4>Nossas Iniciativas:</h4>
+                            <ul>
+                                <li>Cursos de tecnologia avançada</li>
+                                <li>Parcerias com empresas inovadoras</li>
+                                <li>Desenvolvimento de soft skills</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="ods-flashcard" data-ods="10">
+                        <div class="flashcard-front">
+                            <div class="ods-number">10</div>
+                            <h3>Redução das Desigualdades</h3>
+                            <p>Acesso democrático à educação de ponta</p>
+                        </div>
+                        <div class="flashcard-back">
+                            <h4>Nossas Iniciativas:</h4>
+                            <ul>
+                                <li>IA que personaliza para cada realidade</li>
+                                <li>Conteúdo adaptativo e inclusivo</li>
+                                <li>Tecnologia para necessidades especiais</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard-controls">
+                    <button class="flashcard-btn" id="prevOds"><i class="fas fa-chevron-left"></i></button>
+                    <button class="flashcard-btn" id="nextOds"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="courses" id="courses">
+            <div class="section-title animate">
+                <h2>Nossos Cursos Revolucionários</h2>
+                <p>Conteúdo educacional que transcende o convencional</p>
+            </div>
+            
+            <div class="course-categories">
+                <button class="category-btn active" data-category="featured">Destaques</button>
+                <button class="category-btn" data-category="fundamental">Fundamental</button>
+                <button class="category-btn" data-category="medio">Médio</button>
+                <button class="category-btn" data-category="enem">ENEM</button>
+                <button class="category-btn" data-category="eja">EJA</button>
+                <button class="category-btn premium" data-category="technology">Tecnologia <i class="fas fa-crown"></i></button>
+                <button class="category-btn premium" data-category="autodidata">Autodidata <i class="fas fa-crown"></i></button>
+            </div>
+            
+            <div class="course-grid" id="courseGrid">
+                <!-- Courses will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section class="dashboard" id="dashboard" style="display: none;">
+            <div class="dashboard-header">
+                <h1>Meu Universo de Aprendizado</h1>
+                <p>Métricas neurocientíficas do seu desenvolvimento cognitivo</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-brain"></i> Desenvolvimento Neurocognitivo</h3>
+                    <div class="neural-progress">
+                        <div class="neural-metric">
+                            <span>Plasticidade Cerebral</span>
+                            <div class="neural-bar">
+                                <div class="neural-fill" style="width: 85%"></div>
+                            </div>
+                            <span>85%</span>
+                        </div>
+                        <div class="neural-metric">
+                            <span>Dopamina (Motivação)</span>
+                            <div class="neural-bar">
+                                <div class="neural-fill" style="width: 78%"></div>
+                            </div>
+                            <span>78%</span>
+                        </div>
+                        <div class="neural-metric">
+                            <span>Acetilcolina (Foco)</span>
+                            <div class="neural-bar">
+                                <div class="neural-fill" style="width: 92%"></div>
+                            </div>
+                            <span>92%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-trophy"></i> Conquistas Cósmicas</h3>
+                    <div class="achievements-grid">
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-star"></i></div>
+                            <div class="achievement-info">
+                                <h4>Mestre Quântico</h4>
+                                <p>Completou 10 cursos avançados</p>
+                            </div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-icon"><i class="fas fa-brain"></i></div>
+                            <div class="achievement-info">
+                                <h4>Neuroplasticidade Máxima</h4>
+                                <p>95% de desenvolvimento cognitivo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-chart-line"></i> Evolução Neural</h3>
+                    <div class="chart-container">
+                        <canvas id="neuralChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- IoT Ecosystem -->
+            <div class="iot-ecosystem">
+                <h2>Ecossistema IoT de Aprendizado</h2>
+                <div class="iot-devices">
+                    <div class="iot-device">
+                        <div class="device-icon"><i class="fas fa-vr-cardboard"></i></div>
+                        <h3>NeuroVision AR</h3>
+                        <p>Óculos de realidade aumentada com monitoramento neural</p>
+                        <div class="device-stats">
+                            <span class="stat">Foco: 94%</span>
+                            <span class="stat">Tempo: 2.5h</span>
+                        </div>
+                    </div>
+                    <div class="iot-device">
+                        <div class="device-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>CogniSensor</h3>
+                        <p>Sensor vestível de monitoramento cognitivo</p>
+                        <div class="device-stats">
+                            <span class="stat">Atenção: +42%</span>
+                            <span class="stat">Stress: -35%</span>
+                        </div>
+                    </div>
+                    <div class="iot-device">
+                        <div class="device-icon"><i class="fas fa-tablet-alt"></i></div>
+                        <h3>Hub Quântico</h3>
+                        <p>Central de processamento de dados neurais</p>
+                        <div class="device-stats">
+                            <span class="stat">Dados: 15.2k</span>
+                            <span class="stat">Precisão: 98%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources" id="resources">
+            <div class="section-title animate">
+                <h2>Recursos Educacionais Avançados</h2>
+                <p>Ferramentas neurocientíficas para potencializar seu aprendizado</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card animate delay-1" data-resource="library">
+                    <div class="resource-icon">📚</div>
+                    <h3>Biblioteca Quântica</h3>
+                    <p>Acesso a milhares de PDFs, vídeos e materiais científicos com IA de recomendação personalizada.</p>
+                    <button class="btn btn-outline">Acessar Biblioteca</button>
+                </div>
+                <div class="resource-card animate delay-2" data-resource="forum">
+                    <div class="resource-icon">💬</div>
+                    <h3>Fórum Neural</h3>
+                    <p>Comunidade interativa com IA moderadora que facilita discussões produtivas e colaboração.</p>
+                    <button class="btn btn-outline">Participar do Fórum</button>
+                </div>
+                <div class="resource-card animate delay-3" data-resource="tutoring">
+                    <div class="resource-icon">🎓</div>
+                    <h3>Tutoria IA Cósmica</h3>
+                    <p>Mentoria personalizada com IA que se adapta ao seu perfil neurocognitivo único.</p>
+                    <button class="btn btn-outline premium">Encontrar Tutor <i class="fas fa-crown"></i></button>
+                </div>
+                <div class="resource-card animate delay-1" data-resource="articles">
+                    <div class="resource-icon">📝</div>
+                    <h3>Artigos Científicos</h3>
+                    <p>Conteúdo acadêmico avançado com base em neurociência e pesquisas de ponta.</p>
+                    <button class="btn btn-outline premium">Explorar Artigos <i class="fas fa-crown"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="section-title animate">
+                <h2>Sobre a Lumenis Academy</h2>
+            </div>
+            <div class="about-content animate delay-1">
+                <p>A Lumenis Academy é um projeto nacional revolucionário que visa promover a excelência educacional através da neurociência aplicada e inteligência artificial avançada. Nossa missão é transformar a educação brasileira, preparando estudantes para os desafios do século XXI.</p>
+                <p>Fundada com base em pesquisas neurocientíficas de ponta, desenvolvemos uma plataforma que estimula a plasticidade cerebral, otimiza neurotransmissores do aprendizado e promove o desenvolvimento cognitivo integral.</p>
+                <div class="team-section">
+                    <h3>Nossa Equipe Científica</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Dra. Jordana</h4>
+                            <p>Neurocientista e Psicóloga</p>
+                            <p>Especialista em neuroplasticidade e aprendizado</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-avatar">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4>Equipe Lumenis</h4>
+                            <p>Desenvolvedores e Educadores</p>
+                            <p>Especialistas em tecnologia educacional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Course Detail Section -->
+        <section class="course-detail" id="courseDetail" style="display: none;">
+            <!-- Content will be loaded dynamically -->
+        </section>
+
+        <!-- Resource Pages -->
+        <section class="resource-page" id="libraryPage" style="display: none;">
+            <div class="resource-header">
+                <h1>Biblioteca Quântica</h1>
+                <p>Coleção curada de recursos educacionais com IA de recomendação</p>
+            </div>
+            <div class="library-content">
+                <div class="library-search">
+                    <input type="text" placeholder="Buscar por título, autor ou tema..." id="librarySearch">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="library-categories">
+                    <button class="lib-category active" data-category="all">Todos</button>
+                    <button class="lib-category" data-category="math">Matemática</button>
+                    <button class="lib-category" data-category="science">Ciências</button>
+                    <button class="lib-category" data-category="tech">Tecnologia</button>
+                    <button class="lib-category" data-category="humanities">Humanidades</button>
+                </div>
+                <div class="library-grid" id="libraryGrid">
+                    <!-- Library items will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section class="payment-section" id="paymentSection" style="display: none;">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h2>Acesso Premium Vitalício</h2>
+                    <p>Desbloqueie todo o potencial da Lumenis Academy</p>
+                </div>
+                <div class="payment-plans">
+                    <div class="plan-card premium-plan">
+                        <div class="plan-header">
+                            <h3>Tecnologia Premium</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">297</span>
+                                <span class="period">vitalício</span>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Todos os cursos de Tecnologia</li>
+                                <li><i class="fas fa-check"></i> Certificados reconhecidos</li>
+                                <li><i class="fas fa-check"></i> Projetos práticos</li>
+                                <li><i class="fas fa-check"></i> Mentoria especializada</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-solid plan-btn" data-plan="tech">Adquirir Agora</button>
+                    </div>
+                    <div class="plan-card premium-plan featured">
+                        <div class="plan-badge">Mais Popular</div>
+                        <div class="plan-header">
+                            <h3>Autodidata Premium</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">497</span>
+                                <span class="period">vitalício</span>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Todos os cursos Autodidatas</li>
+                                <li><i class="fas fa-check"></i> IA Tutor personalizada</li>
+                                <li><i class="fas fa-check"></i> Biblioteca premium</li>
+                                <li><i class="fas fa-check"></i> Artigos científicos</li>
+                                <li><i class="fas fa-check"></i> Comunidade exclusiva</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-solid plan-btn" data-plan="autodidata">Adquirir Agora</button>
+                    </div>
+                    <div class="plan-card premium-plan ultimate">
+                        <div class="plan-badge">Completo</div>
+                        <div class="plan-header">
+                            <h3>Lumenis Ultimate</h3>
+                            <div class="plan-price">
+                                <span class="currency">R$</span>
+                                <span class="amount">697</span>
+                                <span class="period">vitalício</span>
+                            </div>
+                        </div>
+                        <div class="plan-features">
+                            <ul>
+                                <li><i class="fas fa-check"></i> Acesso completo à plataforma</li>
+                                <li><i class="fas fa-check"></i> Todos os recursos premium</li>
+                                <li><i class="fas fa-check"></i> IoT Learning Kit</li>
+                                <li><i class="fas fa-check"></i> Consultoria 1:1</li>
+                                <li><i class="fas fa-check"></i> Acesso antecipado</li>
+                            </ul>
+                        </div>
+                        <button class="btn btn-solid plan-btn" data-plan="ultimate">Adquirir Agora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>Lumenis Academy</h4>
+                <p>O portal do conhecimento autodidata que prepara você para os desafios do futuro com neurociência e IA.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/lumenis_academy/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Contato & Suporte</h4>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>contato@lumenisacademy.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <span>(31) 98765-4321</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-headset"></i>
+                    <a href="#support">Suporte 24/7</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Links Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#courses">Cursos</a></li>
+                    <li><a href="#resources">Recursos</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#partnerships">Parcerias</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal & Políticas</h4>
+                <ul class="footer-links">
+                    <li><a href="#privacy">Política de Privacidade</a></li>
+                    <li><a href="#terms">Termos de Uso</a></li>
+                    <li><a href="#cookies">Política de Cookies</a></li>
+                    <li><a href="#refund">Política de Reembolso</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2025 Lumenis Academy. Todos os direitos reservados. | Transformando educação com neurociência e IA.
+            </div>
+            <div class="footer-badges">
+                <span class="badge">🏆 Projeto Nacional</span>
+                <span class="badge">🧠 Baseado em Neurociência</span>
+                <span class="badge">🚀 IA Avançada</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Acesso à Plataforma</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-solid" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="register-link">
+                Não tem uma conta? <a href="#" id="registerLink">Cadastre-se gratuitamente!</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="paymentModal">
+        <div class="modal-content payment-modal">
+            <span class="close-modal" id="closePaymentModal">&times;</span>
+            <div class="payment-form-container">
+                <h3>Finalizar Compra</h3>
+                <div class="selected-plan" id="selectedPlan">
+                    <!-- Plan details will be inserted here -->
+                </div>
+                <form id="paymentForm">
+                    <div class="form-group">
+                        <label for="cardName">Nome no Cartão</label>
+                        <input type="text" id="cardName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Número do Cartão</label>
+                        <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cardExpiry">Validade</label>
+                            <input type="text" id="cardExpiry" class="form-control" placeholder="MM/AA" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvv">CVV</label>
+                            <input type="text" id="cardCvv" class="form-control" placeholder="123" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-solid" style="width: 100%;">
+                        <i class="fas fa-lock"></i> Finalizar Compra Segura
+                    </button>
+                </form>
+                <div class="payment-security">
+                    <p><i class="fas fa-shield-alt"></i> Pagamento 100% seguro e criptografado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/cosmic-avatar.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
