@@ -1,92 +1,92 @@
-// ===== MAIN APPLICATION CONTROLLER =====
-import { CONFIG, initializeConfig } from './config.js'
-import { apiClient } from './api-client.js'
-import { initializeSupabase, lumenisDB } from './supabase-client.js'
-
+// ===== LUMENIS ACADEMY - MAIN CONTROLLER SIMPLIFICADO =====
 class LumenisAcademy {
     constructor() {
         this.currentSection = 'home';
         this.isLoggedIn = false;
         this.userData = null;
-        this.loadingScreen = document.getElementById('loadingScreen');
         this.currentOdsCard = 0;
-        this.isInitialized = false;
-        this.config = null;
+        this.loadingProgress = 0;
         
         this.init();
     }
 
-    async init() {
-        try {
-            // Initialize configuration
-            this.config = initializeConfig();
-            
-            // Initialize Supabase if enabled
-            if (this.config.supabase.enabled) {
-                initializeSupabase();
-            }
-            
-            await this.showLoadingScreen();
-            this.setupEventListeners();
-            this.initializeComponents();
-            this.createQuantumParticles();
-            this.setupAnimations();
-            this.loadCourses();
-            this.setupOdsFlashcards();
-            this.initializeCharts();
-            this.checkUserSession();
-            this.hideLoadingScreen();
-            this.isInitialized = true;
-            
-            // Sync offline data if online
-            if (navigator.onLine) {
-                await apiClient.syncOfflineData();
-            }
-        } catch (error) {
-            console.error('Initialization error:', error);
-            this.hideLoadingScreen();
-        }
+    init() {
+        console.log('🚀 Inicializando Lumenis Academy...');
+        
+        // Simular loading rápido e funcional
+        this.simulateLoading();
     }
 
-    showLoadingScreen() {
-        return new Promise((resolve) => {
-            let progress = 0;
-            const progressBar = document.querySelector('.loading-progress');
-            const loadingText = document.querySelector('.loading-text');
+    simulateLoading() {
+        const progressBar = document.querySelector('.loading-progress');
+        const loadingText = document.querySelector('.loading-text');
+        
+        const messages = [
+            'Carregando interface...',
+            'Preparando cursos...',
+            'Ativando sistema...',
+            'Quase pronto!'
+        ];
+        
+        let messageIndex = 0;
+        
+        const loadingInterval = setInterval(() => {
+            this.loadingProgress += 25;
             
-            const messages = [
-                'Inicializando IA Cósmica...',
-                'Carregando Neurociência Avançada...',
-                'Conectando Dispositivos IoT...',
-                'Ativando Gamificação Neural...',
-                'Preparando Experiência Personalizada...',
-                'Quase pronto para transcender!'
-            ];
+            if (progressBar) {
+                progressBar.style.width = `${this.loadingProgress}%`;
+            }
             
-            const interval = setInterval(() => {
-                progress += Math.random() * 15 + 5;
-                if (progress > 100) progress = 100;
-                
-                progressBar.style.width = `${progress}%`;
-                
-                const messageIndex = Math.floor((progress / 100) * messages.length);
-                if (messageIndex < messages.length) {
-                    loadingText.textContent = messages[messageIndex];
-                }
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(resolve, 500);
-                }
-            }, 200);
-        });
+            if (loadingText && messageIndex < messages.length) {
+                loadingText.textContent = messages[messageIndex];
+                messageIndex++;
+            }
+            
+            if (this.loadingProgress >= 100) {
+                clearInterval(loadingInterval);
+                setTimeout(() => {
+                    this.hideLoadingScreen();
+                    this.startApplication();
+                }, 500);
+            }
+        }, 500);
     }
 
     hideLoadingScreen() {
-        this.loadingScreen.style.opacity = '0';
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    startApplication() {
+        console.log('✅ Aplicação iniciada com sucesso!');
+        
+        this.setupEventListeners();
+        this.initializeComponents();
+        this.createQuantumParticles();
+        this.setupAnimations();
+        this.loadCourses();
+        this.setupOdsFlashcards();
+        this.checkUserSession();
+        this.initializeCharts();
+        
+        // Mostrar mensagem de boas-vindas
+        this.showWelcomeMessage();
+    }
+
+    showWelcomeMessage() {
         setTimeout(() => {
-            this.loadingScreen.style.display = 'none';
-        }, 500);
+            if (window.cosmicAvatar) {
+                window.cosmicAvatar.showMessage(
+                    "🌟 Bem-vindo à Lumenis Academy! Sua jornada de conhecimento cósmico começa agora!",
+                    4000
+                );
+            }
+        }, 1000);
     }
 
     setupEventListeners() {
@@ -95,7 +95,7 @@ class LumenisAcademy {
             link.addEventListener('click', (e) => this.handleNavigation(e));
         });
 
-        // Login/Register
+        // Login/Register buttons
         document.getElementById('loginBtn')?.addEventListener('click', () => this.showLoginModal());
         document.getElementById('startNowBtn')?.addEventListener('click', () => this.showLoginModal());
         document.getElementById('startNowHeroBtn')?.addEventListener('click', () => this.showLoginModal());
@@ -131,43 +131,47 @@ class LumenisAcademy {
         // Mascot interaction
         document.getElementById('cosmicMascote')?.addEventListener('click', () => this.interactWithMascot());
 
+        // Register link
+        document.getElementById('registerLink')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showRegisterForm();
+        });
+
+        // Logout
+        document.getElementById('logoutBtn')?.addEventListener('click', () => this.logout());
+
         // Window events
         window.addEventListener('scroll', () => this.handleScroll());
-        window.addEventListener('resize', () => this.handleResize());
         
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => this.handleKeyboardShortcuts(e));
+        // Click outside modal to close
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    this.hideModal(modal.id);
+                }
+            });
+        });
     }
 
     initializeComponents() {
-        // Initialize neural chart if dashboard is visible
-        if (document.getElementById('neuralChart')) {
-            this.initializeNeuralChart();
-        }
-
-        // Initialize IoT device simulation
-        this.simulateIoTDevices();
-
-        // Setup user progress tracking
         this.initializeProgressTracking();
-
-        // Initialize search functionality
-        this.initializeSearch();
+        this.simulateIoTDevices();
     }
 
     createQuantumParticles() {
         const container = document.getElementById('quantum-particles');
-        const particleCount = 50;
+        if (!container) return;
+        
+        const particleCount = 20; // Reduzido para melhor performance
         
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.classList.add('quantum-particle');
             
-            // Random properties
-            const size = Math.random() * 4 + 2;
-            const opacity = Math.random() * 0.6 + 0.2;
-            const duration = Math.random() * 20 + 15;
-            const delay = Math.random() * 10;
+            const size = Math.random() * 3 + 1;
+            const opacity = Math.random() * 0.5 + 0.1;
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
             
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
@@ -176,21 +180,11 @@ class LumenisAcademy {
             particle.style.animationDuration = `${duration}s`;
             particle.style.animationDelay = `${delay}s`;
             
-            // Random colors
-            const colors = [
-                'rgba(124, 58, 237, 0.8)',
-                'rgba(219, 39, 119, 0.8)',
-                'rgba(6, 182, 212, 0.8)',
-                'rgba(245, 158, 11, 0.8)'
-            ];
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
             container.appendChild(particle);
         }
     }
 
     setupAnimations() {
-        // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -208,7 +202,6 @@ class LumenisAcademy {
         const courseGrid = document.getElementById('courseGrid');
         if (!courseGrid) return;
 
-        // Load featured courses by default
         this.renderCourses('featured');
     }
 
@@ -229,7 +222,7 @@ class LumenisAcademy {
         card.className = 'course-card';
         card.dataset.courseId = course.id;
         
-        const premiumBadge = course.premium ? '<span class="premium-badge"><i class="fas fa-crown"></i></span>' : '';
+        const premiumBadge = course.premium ? '<div class="course-tag premium"><i class="fas fa-crown"></i> Premium</div>' : '';
         
         card.innerHTML = `
             <div class="course-image" style="background-image: url('${course.image}')">
@@ -240,34 +233,27 @@ class LumenisAcademy {
                 <h3>${course.title}</h3>
                 <p>${course.description}</p>
                 <div class="course-meta">
-                    <div class="course-stats">
-                        <span><i class="fas fa-star"></i> ${course.rating}</span>
-                        <span><i class="fas fa-users"></i> ${course.students}</span>
-                        <span><i class="fas fa-clock"></i> ${course.duration}</span>
-                    </div>
-                    <div class="course-actions">
-                        ${course.premium ? 
-                            `<button class="btn btn-solid premium-btn" data-course="${course.id}">
-                                R$ ${course.price} <i class="fas fa-crown"></i>
-                            </button>` :
-                            `<button class="btn btn-outline course-btn" data-course="${course.id}">
-                                Acessar Grátis
-                            </button>`
-                        }
-                    </div>
+                    <div class="course-level">${course.level}</div>
+                    <a href="#" class="course-btn" data-course="${course.id}">
+                        ${course.premium ? 'Adquirir' : 'Acessar'} <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         `;
         
         // Add event listeners
-        card.querySelector('.course-btn, .premium-btn')?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (course.premium) {
-                this.showPaymentModal(course);
-            } else {
-                this.accessCourse(course);
-            }
-        });
+        const courseBtn = card.querySelector('.course-btn');
+        if (courseBtn) {
+            courseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (course.premium) {
+                    this.showPaymentModal(course);
+                } else {
+                    this.accessCourse(course);
+                }
+            });
+        }
         
         card.addEventListener('click', () => this.showCourseDetail(course));
         
@@ -288,27 +274,12 @@ class LumenisAcademy {
     }
 
     filterCourses(category) {
-        // Update active button
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        document.querySelector(`[data-category="${category}"]`).classList.add('active');
+        document.querySelector(`[data-category="${category}"]`)?.classList.add('active');
         
-        // Render courses
         this.renderCourses(category);
-        
-        // Animate course cards
-        setTimeout(() => {
-            document.querySelectorAll('.course-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.style.transition = 'all 0.5s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        }, 50);
     }
 
     setupOdsFlashcards() {
@@ -319,7 +290,6 @@ class LumenisAcademy {
                 card.classList.toggle('flipped');
             });
             
-            // Position cards
             if (index !== this.currentOdsCard) {
                 card.classList.remove('active');
             }
@@ -352,32 +322,17 @@ class LumenisAcademy {
     }
 
     initializeCharts() {
-        // Neural development chart
         const ctx = document.getElementById('neuralChart');
-        if (ctx) {
-            this.neuralChart = new Chart(ctx, {
+        if (ctx && typeof Chart !== 'undefined') {
+            new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago'],
+                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
                     datasets: [{
-                        label: 'Plasticidade Cerebral',
-                        data: [65, 70, 75, 80, 82, 85, 87, 85],
+                        label: 'Desenvolvimento Neural',
+                        data: [65, 70, 75, 80, 85, 90],
                         borderColor: '#7C3AED',
                         backgroundColor: 'rgba(124, 58, 237, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }, {
-                        label: 'Dopamina',
-                        data: [60, 65, 68, 72, 75, 78, 80, 78],
-                        borderColor: '#DB2777',
-                        backgroundColor: 'rgba(219, 39, 119, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }, {
-                        label: 'Acetilcolina',
-                        data: [70, 75, 80, 85, 88, 90, 92, 92],
-                        borderColor: '#06B6D4',
-                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
                         tension: 0.4,
                         fill: true
                     }]
@@ -387,29 +342,19 @@ class LumenisAcademy {
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            labels: {
-                                color: '#E2E8F0'
-                            }
+                            labels: { color: '#E2E8F0' }
                         }
                     },
                     scales: {
                         y: {
                             beginAtZero: true,
                             max: 100,
-                            ticks: {
-                                color: '#E2E8F0'
-                            },
-                            grid: {
-                                color: 'rgba(124, 58, 237, 0.1)'
-                            }
+                            ticks: { color: '#E2E8F0' },
+                            grid: { color: 'rgba(124, 58, 237, 0.1)' }
                         },
                         x: {
-                            ticks: {
-                                color: '#E2E8F0'
-                            },
-                            grid: {
-                                color: 'rgba(124, 58, 237, 0.1)'
-                            }
+                            ticks: { color: '#E2E8F0' },
+                            grid: { color: 'rgba(124, 58, 237, 0.1)' }
                         }
                     }
                 }
@@ -418,34 +363,23 @@ class LumenisAcademy {
     }
 
     simulateIoTDevices() {
-        // Simulate real-time IoT data updates
         setInterval(() => {
             this.updateIoTMetrics();
         }, 5000);
     }
 
     updateIoTMetrics() {
-        const devices = document.querySelectorAll('.iot-device');
+        const devices = document.querySelectorAll('.iot-device .stat');
         
-        devices.forEach(device => {
-            const stats = device.querySelectorAll('.stat');
-            stats.forEach(stat => {
-                const currentValue = stat.textContent;
-                const numericValue = parseFloat(currentValue.replace(/[^\d.-]/g, ''));
-                
-                if (!isNaN(numericValue)) {
-                    const variation = (Math.random() - 0.5) * 2; // -1 to 1
-                    const newValue = Math.max(0, Math.min(100, numericValue + variation));
-                    
-                    if (currentValue.includes('%')) {
-                        stat.textContent = `${stat.textContent.split(':')[0]}: ${newValue.toFixed(0)}%`;
-                    } else if (currentValue.includes('h')) {
-                        stat.textContent = `${stat.textContent.split(':')[0]}: ${newValue.toFixed(1)}h`;
-                    } else if (currentValue.includes('k')) {
-                        stat.textContent = `${stat.textContent.split(':')[0]}: ${(newValue/1000).toFixed(1)}k`;
-                    }
-                }
-            });
+        devices.forEach(stat => {
+            const text = stat.textContent;
+            const match = text.match(/(\d+)%/);
+            if (match) {
+                const currentValue = parseInt(match[1]);
+                const variation = Math.floor(Math.random() * 6) - 3; // -3 a +3
+                const newValue = Math.max(70, Math.min(100, currentValue + variation));
+                stat.textContent = text.replace(/\d+%/, `${newValue}%`);
+            }
         });
     }
 
@@ -475,7 +409,7 @@ class LumenisAcademy {
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Trigger section-specific actions
+            // Load section data
             this.onSectionChange(section);
         }
     }
@@ -488,9 +422,6 @@ class LumenisAcademy {
             case 'courses':
                 this.loadCourses();
                 break;
-            case 'resources':
-                this.loadResourcesData();
-                break;
         }
     }
 
@@ -502,12 +433,12 @@ class LumenisAcademy {
         const modal = document.getElementById('paymentModal');
         const selectedPlan = document.getElementById('selectedPlan');
         
-        if (course) {
+        if (course && selectedPlan) {
             selectedPlan.innerHTML = `
                 <h4>${course.title}</h4>
                 <div class="plan-price">
                     <span class="currency">R$</span>
-                    <span class="amount">${course.price}</span>
+                    <span class="amount">${course.price || 297}</span>
                     <span class="period">vitalício</span>
                 </div>
             `;
@@ -521,283 +452,270 @@ class LumenisAcademy {
         if (modal) {
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-            
-            // Add animation
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
         }
     }
 
     hideModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
-            modal.classList.remove('show');
-            setTimeout(() => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }, 300);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     }
 
-    handleLogin(e) {
+    async handleLogin(e) {
         e.preventDefault();
         
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         
-        this.showLoadingInButton(e.target.querySelector('button[type="submit"]'));
+        if (!email || !password) {
+            this.showMessage('Por favor, preencha todos os campos!', 'error');
+            return;
+        }
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        this.showLoadingInButton(submitBtn);
         
         try {
-            const result = await apiClient.login(email, password);
+            // Simular login (substituir por chamada real da API)
+            const response = await this.simulateLogin(email, password);
             
-            if (result.success) {
+            if (response.success) {
                 this.isLoggedIn = true;
-                this.userData = result.user;
+                this.userData = response.user;
                 
                 this.updateUserInterface();
                 this.hideModal('loginModal');
                 this.navigateToSection('dashboard');
                 
-                // Show welcome message
-                if (window.cosmicAvatar) {
-                    window.cosmicAvatar.showMessage(
-                        `🎉 Bem-vindo de volta, ${this.userData.firstName || this.userData.email.split('@')[0]}! Seus neurônios estão brilhando intensamente hoje!`,
-                        5000
-                    );
-                }
+                this.showMessage('Login realizado com sucesso!', 'success');
             } else {
-                this.showMessage(`Erro no login: ${result.error}`, 'error');
+                this.showMessage(response.error || 'Erro no login', 'error');
             }
         } catch (error) {
             this.showMessage('Erro de conexão. Tente novamente.', 'error');
         } finally {
-            this.restoreButton(e.target.querySelector('button[type="submit"]'));
+            this.restoreButton(submitBtn);
         }
     }
-    
-    async handleRegister(userData) {
-        try {
-            const result = await apiClient.register(userData);
-            
-            if (result.success) {
-            this.isLoggedIn = true;
-                this.userData = result.user;
-                
-                this.updateUserInterface();
-                this.hideModal('loginModal');
-                this.navigateToSection('dashboard');
-                
-                this.showMessage('Conta criada com sucesso! Bem-vindo à Lumenis Academy!', 'success');
-            } else {
-                this.showMessage(`Erro no registro: ${result.error}`, 'error');
-            }
-        } catch (error) {
-            this.showMessage('Erro de conexão. Tente novamente.', 'error');
-        }
-    }
-    
-    async loadDashboardData() {
-        if (!this.isLoggedIn) return;
-        
-        try {
-            const result = await apiClient.getNeuralDashboard();
-            
-            if (result.success) {
-                this.updateDashboardUI(result.dashboard);
-            }
-        } catch (error) {
-            console.error('Error loading dashboard:', error);
-        }
-    }
-    
-    updateDashboardUI(dashboardData) {
-        // Update neural metrics display
-        if (dashboardData.metrics) {
-            this.updateNeuralMetricsDisplay(dashboardData.metrics);
-        }
-        
-        // Update achievements
-        if (dashboardData.achievements) {
-            this.updateAchievementsDisplay(dashboardData.achievements);
-        }
-        
-        // Update insights
-        if (dashboardData.insights) {
-            this.displayInsights(dashboardData.insights);
-        }
-    }
-    
-    async recordNeuralMetric(type, value, context = {}) {
-        if (!this.config.features.neuralTracking) return;
-        
-        const metrics = [{
-            type,
-            value,
-            context,
-            sessionId: this.getSessionId(),
-            deviceId: this.getDeviceId()
-        }];
-        
-        try {
-            await apiClient.recordNeuralMetrics(metrics);
-        } catch (error) {
-            console.error('Error recording neural metrics:', error);
-        }
-    }
-    
-    getSessionId() {
-        let sessionId = sessionStorage.getItem('lumenisSessionId');
-        if (!sessionId) {
-            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            sessionStorage.setItem('lumenisSessionId', sessionId);
-        }
-        return sessionId;
-    }
-    
-    getDeviceId() {
-        let deviceId = localStorage.getItem('lumenisDeviceId');
-        if (!deviceId) {
-            deviceId = 'device_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('lumenisDeviceId', deviceId);
-        }
-        return deviceId;
-    }
-            
-    async loadCourses() {
-        const courseGrid = document.getElementById('courseGrid');
-        if (!courseGrid) return;
 
-        try {
-            const result = await apiClient.getCourses('featured');
-            
-            if (result.success) {
-                this.renderCoursesFromAPI(result.courses);
-            } else {
-                // Fallback to static data
-                this.renderCourses('featured');
-            }
-        } catch (error) {
-            console.error('Error loading courses:', error);
-            // Fallback to static data
-            this.renderCourses('featured');
+    async simulateLogin(email, password) {
+        // Simular delay da API
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Validação simples para demonstração
+        if (email === 'admin@lumenis.com' && password === '123456') {
+            return {
+                success: true,
+                user: {
+                    id: 1,
+                    email: email,
+                    firstName: 'Admin',
+                    lastName: 'Lumenis',
+                    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?w=50',
+                    premium: true
+                }
+            };
+        } else if (email.includes('@') && password.length >= 6) {
+            return {
+                success: true,
+                user: {
+                    id: 2,
+                    email: email,
+                    firstName: email.split('@')[0],
+                    lastName: 'Estudante',
+                    avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?w=50',
+                    premium: false
+                }
+            };
+        } else {
+            return {
+                success: false,
+                error: 'Email ou senha inválidos'
+            };
         }
     }
-    
-    renderCoursesFromAPI(courses) {
-        const courseGrid = document.getElementById('courseGrid');
-        courseGrid.innerHTML = '';
-        
-        courses.forEach(course => {
-            const courseCard = this.createCourseCardFromAPI(course);
-            courseGrid.appendChild(courseCard);
-        });
-    }
-    
-    createCourseCardFromAPI(course) {
-        const card = document.createElement('div');
-        card.className = 'course-card';
-        card.dataset.courseId = course.uuid;
-        
-        const premiumBadge = course.is_premium ? '<span class="premium-badge"><i class="fas fa-crown"></i></span>' : '';
-        
-        card.innerHTML = `
-            <div class="course-image" style="background-image: url('${course.thumbnail_url || 'https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg'}')">
-                <div class="course-tag">${this.getCategoryName(course.category)}</div>
-                ${premiumBadge}
-            </div>
-            <div class="course-content">
-                <h3>${course.title}</h3>
-                <p>${course.short_description || course.description}</p>
-                <div class="course-meta">
-                    <div class="course-stats">
-                        <span><i class="fas fa-star"></i> ${course.rating}</span>
-                        <span><i class="fas fa-users"></i> ${course.total_students}</span>
-                        <span><i class="fas fa-clock"></i> ${course.duration_hours}h</span>
+
+    showRegisterForm() {
+        const modalContent = document.querySelector('#loginModal .modal-content');
+        modalContent.innerHTML = `
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Criar Conta Gratuita</h3>
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Nome</label>
+                        <input type="text" id="firstName" class="form-control" placeholder="Seu nome" required>
                     </div>
-                    <div class="course-actions">
-                        ${course.is_premium ? 
-                            `<button class="btn btn-solid premium-btn" data-course="${course.uuid}">
-                                R$ ${course.price} <i class="fas fa-crown"></i>
-                            </button>` :
-                            `<button class="btn btn-outline course-btn" data-course="${course.uuid}">
-                                Acessar Grátis
-                            </button>`
-                        }
+                    <div class="form-group">
+                        <label for="lastName">Sobrenome</label>
+                        <input type="text" id="lastName" class="form-control" placeholder="Seu sobrenome" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="registerEmail">E-mail</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Senha</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Mínimo 6 caracteres" required>
+                </div>
+                <button type="submit" class="btn btn-solid" style="width: 100%;">Criar Conta</button>
+            </form>
+            <div class="register-link">
+                Já tem uma conta? <a href="#" id="loginLink">Faça login!</a>
             </div>
         `;
         
-        // Add event listeners
-        card.querySelector('.course-btn, .premium-btn')?.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (course.is_premium) {
-                this.showPaymentModal(course);
-            } else {
-                this.accessCourse(course);
-            }
+        // Re-add event listeners
+        document.getElementById('closeModal').addEventListener('click', () => this.hideModal('loginModal'));
+        document.getElementById('registerForm').addEventListener('submit', (e) => this.handleRegister(e));
+        document.getElementById('loginLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showLoginForm();
         });
+    }
+
+    showLoginForm() {
+        const modalContent = document.querySelector('#loginModal .modal-content');
+        modalContent.innerHTML = `
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Acesso à Plataforma</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" class="form-control" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-solid" style="width: 100%;">Entrar</button>
+            </form>
+            <div class="register-link">
+                Não tem uma conta? <a href="#" id="registerLink">Cadastre-se gratuitamente!</a>
+            </div>
+        `;
         
-        card.addEventListener('click', () => this.showCourseDetail(course));
+        // Re-add event listeners
+        document.getElementById('closeModal').addEventListener('click', () => this.hideModal('loginModal'));
+        document.getElementById('loginForm').addEventListener('submit', (e) => this.handleLogin(e));
+        document.getElementById('registerLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.showRegisterForm();
+        });
+    }
+
+    async handleRegister(e) {
+        e.preventDefault();
         
-        return card;
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('registerEmail').value;
+        const password = document.getElementById('registerPassword').value;
+        
+        if (!firstName || !lastName || !email || !password) {
+            this.showMessage('Por favor, preencha todos os campos!', 'error');
+            return;
+        }
+        
+        if (password.length < 6) {
+            this.showMessage('A senha deve ter pelo menos 6 caracteres!', 'error');
+            return;
+        }
+        
+        const submitBtn = e.target.querySelector('button[type="submit"]');
+        this.showLoadingInButton(submitBtn);
+        
+        try {
+            // Simular registro
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            this.isLoggedIn = true;
+            this.userData = {
+                id: Date.now(),
+                email: email,
+                firstName: firstName,
+                lastName: lastName,
+                avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?w=50',
+                premium: false
+            };
+            
+            this.updateUserInterface();
+            this.hideModal('loginModal');
+            this.navigateToSection('dashboard');
+            
+            this.showMessage('Conta criada com sucesso! Bem-vindo à Lumenis Academy!', 'success');
+        } catch (error) {
+            this.showMessage('Erro ao criar conta. Tente novamente.', 'error');
+        } finally {
+            this.restoreButton(submitBtn);
+        }
     }
 
     handlePayment(e) {
         e.preventDefault();
         
-        // Simulate payment processing
         const submitBtn = e.target.querySelector('button[type="submit"]');
         this.showLoadingInButton(submitBtn);
         
         setTimeout(() => {
-            // Simulate successful payment
             this.hideModal('paymentModal');
-            this.showSuccessMessage('Pagamento processado com sucesso! Acesso premium ativado!');
+            this.showMessage('Pagamento processado com sucesso! Acesso premium ativado!', 'success');
             
-            // Update user status
             if (this.userData) {
                 this.userData.premium = true;
+                this.updateUserInterface();
             }
             
-            this.updateUserInterface();
-        }, 3000);
+            this.restoreButton(submitBtn);
+        }, 2000);
+    }
+
+    handlePlanSelection(e) {
+        const planType = e.target.dataset.plan;
+        this.showPaymentModal({ title: 'Plano Premium', price: 297 });
     }
 
     showLoadingInButton(button) {
         const originalText = button.innerHTML;
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
         button.disabled = true;
-        
-        // Store original text for restoration
         button.dataset.originalText = originalText;
     }
 
     restoreButton(button) {
-        button.innerHTML = button.dataset.originalText;
+        button.innerHTML = button.dataset.originalText || button.innerHTML;
         button.disabled = false;
     }
 
     updateUserInterface() {
         if (this.isLoggedIn && this.userData) {
-            // Hide login button, show user menu
             document.getElementById('loginBtn').style.display = 'none';
             const userMenu = document.getElementById('userMenu');
             userMenu.style.display = 'block';
             
-            // Update user avatar
             const userAvatarImg = document.getElementById('userAvatarImg');
             userAvatarImg.src = this.userData.avatar;
-            userAvatarImg.alt = this.userData.name;
+            userAvatarImg.alt = `${this.userData.firstName} ${this.userData.lastName}`;
             
-            // Update premium features
-            if (this.userData.premium) {
-                document.querySelectorAll('.premium').forEach(el => {
-                    el.classList.add('unlocked');
-                });
-            }
+            // Save session
+            this.saveUserSession();
         }
+    }
+
+    logout() {
+        this.isLoggedIn = false;
+        this.userData = null;
+        
+        document.getElementById('loginBtn').style.display = 'block';
+        document.getElementById('userMenu').style.display = 'none';
+        
+        localStorage.removeItem('lumenisUserSession');
+        this.navigateToSection('home');
+        
+        this.showMessage('Logout realizado com sucesso!', 'success');
     }
 
     handleResourceClick(e) {
@@ -805,150 +723,54 @@ class LumenisAcademy {
         
         switch(resourceType) {
             case 'library':
-                this.showLibrary();
+                this.showMessage('Biblioteca em desenvolvimento! Em breve disponível.', 'info');
                 break;
             case 'forum':
-                this.showForum();
+                this.showMessage('Fórum em desenvolvimento! Em breve disponível.', 'info');
                 break;
             case 'tutoring':
-                this.showTutoring();
+                this.showMessage('Tutoria premium! Faça upgrade para acessar.', 'info');
                 break;
             case 'articles':
-                this.showArticles();
+                this.showMessage('Artigos premium! Faça upgrade para acessar.', 'info');
                 break;
         }
     }
 
-    showLibrary() {
-        this.navigateToSection('libraryPage');
-        this.loadLibraryContent();
-    }
-
-    loadLibraryContent() {
-        const libraryGrid = document.getElementById('libraryGrid');
-        if (!libraryGrid) return;
-        
-        const libraryData = window.LumenisData?.library || {};
-        libraryGrid.innerHTML = '';
-        
-        Object.keys(libraryData).forEach(category => {
-            const categoryCard = document.createElement('div');
-            categoryCard.className = 'library-category-card';
-            
-            categoryCard.innerHTML = `
-                <h3>${this.getCategoryDisplayName(category)}</h3>
-                <div class="library-items">
-                    ${libraryData[category].map(item => `
-                        <div class="library-item">
-                            <div class="item-icon">
-                                <i class="fas fa-file-pdf"></i>
-                            </div>
-                            <div class="item-info">
-                                <h4>${item.title}</h4>
-                                <p>Por ${item.author}</p>
-                                <span class="item-meta">${item.pages} páginas • ${item.type}</span>
-                            </div>
-                            <button class="btn btn-outline btn-sm">Acessar</button>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-            
-            libraryGrid.appendChild(categoryCard);
-        });
-    }
-
-    getCategoryDisplayName(category) {
-        const names = {
-            'math': 'Matemática',
-            'science': 'Ciências',
-            'tech': 'Tecnologia',
-            'humanities': 'Humanidades'
-        };
-        return names[category] || category;
-    }
-
-    showSuccessMessage(message) {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
-        successDiv.innerHTML = `
-            <div class="success-content">
-                <i class="fas fa-check-circle"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        
-        document.body.appendChild(successDiv);
-        
-        setTimeout(() => {
-            successDiv.classList.add('show');
-        }, 100);
-        
-        setTimeout(() => {
-            successDiv.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(successDiv);
-            }, 300);
-        }, 4000);
-    }
-
-    handleScroll() {
-        const header = document.getElementById('mainHeader');
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        // Update progress indicators
-        this.updateScrollProgress();
-    }
-
-    updateScrollProgress() {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        document.documentElement.style.setProperty('--scroll-progress', `${scrolled}%`);
-    }
-
-    handleResize() {
-        // Responsive adjustments
-        if (window.innerWidth < 768) {
-            this.enableMobileMode();
-        } else {
-            this.disableMobileMode();
-        }
-    }
-
-    enableMobileMode() {
-        document.body.classList.add('mobile-mode');
-    }
-
-    disableMobileMode() {
-        document.body.classList.remove('mobile-mode');
-    }
-
-    handleKeyboardShortcuts(e) {
-        // Ctrl/Cmd + K for search
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            this.openSearch();
-        }
-        
-        // Escape to close modals
-        if (e.key === 'Escape') {
-            this.closeAllModals();
-        }
-    }
-
-    openSearch() {
-        // Implement global search functionality
-        console.log('Search opened');
-    }
-
-    closeAllModals() {
-        document.querySelectorAll('.modal').forEach(modal => {
-            if (modal.style.display === 'flex') {
-                this.hideModal(modal.id);
+    accessCourse(course) {
+        if (course.id === 'matematica-fund') {
+            window.location.href = 'modules/math-fundamental/index.html';
+        } else if (course.id === 'python-completo') {
+            if (this.userData?.premium) {
+                window.location.href = 'modules/python-complete/index.html';
+            } else {
+                this.showMessage('Curso premium! Faça upgrade para acessar.', 'info');
             }
+        } else {
+            this.showMessage('Curso em desenvolvimento! Em breve disponível.', 'info');
+        }
+    }
+
+    showCourseDetail(course) {
+        this.showMessage(`Detalhes do curso: ${course.title}`, 'info');
+    }
+
+    loadDashboardData() {
+        if (!this.isLoggedIn) {
+            this.navigateToSection('home');
+            this.showMessage('Faça login para acessar o dashboard!', 'error');
+            return;
+        }
+        
+        // Simular dados do dashboard
+        this.updateDashboardMetrics();
+    }
+
+    updateDashboardMetrics() {
+        const metrics = document.querySelectorAll('.neural-fill');
+        metrics.forEach(metric => {
+            const randomValue = Math.floor(Math.random() * 30) + 70; // 70-100%
+            metric.style.width = `${randomValue}%`;
         });
     }
 
@@ -960,110 +782,33 @@ class LumenisAcademy {
             mascot.classList.remove('dancing');
         }, 2000);
         
-        // Trigger avatar interaction
         if (window.cosmicAvatar) {
             window.cosmicAvatar.showMessage(
-                "🎉 Que energia fantástica! Vejo que você está pronto para uma jornada cósmica de aprendizado!",
+                "🎉 Que energia fantástica! Pronto para uma jornada cósmica de aprendizado?",
                 4000
             );
         }
     }
 
-    initializeProgressTracking() {
-        // Track user interactions for analytics
-        this.trackingData = {
-            sessionStart: Date.now(),
-            interactions: [],
-            sectionsVisited: [],
-            coursesViewed: []
-        };
-        
-        // Save session data periodically
-        setInterval(() => {
-            this.saveSessionData();
-        }, 30000);
-    }
-
-    trackInteraction(type, data) {
-        this.trackingData.interactions.push({
-            type,
-            data,
-            timestamp: Date.now()
-        });
-    }
-
-    saveSessionData() {
-        localStorage.setItem('lumenisSession', JSON.stringify(this.trackingData));
-    }
-
-    initializeSearch() {
-        // Global search functionality
-        const searchInput = document.getElementById('librarySearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                this.performSearch(e.target.value);
-            });
+    handleScroll() {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(15, 23, 42, 0.98)';
+            header.style.backdropFilter = 'blur(20px)';
+        } else {
+            header.style.background = 'rgba(15, 23, 42, 0.95)';
+            header.style.backdropFilter = 'blur(20px)';
         }
     }
 
-    performSearch(query) {
-        if (query.length < 2) return;
-        
-        // Search through courses, library, articles
-        const results = this.searchContent(query);
-        this.displaySearchResults(results);
-    }
-
-    searchContent(query) {
-        const results = [];
-        const lowerQuery = query.toLowerCase();
-        
-        // Search courses
-        Object.values(window.LumenisData?.courses || {}).flat().forEach(course => {
-            if (course.title.toLowerCase().includes(lowerQuery) || 
-                course.description.toLowerCase().includes(lowerQuery)) {
-                results.push({
-                    type: 'course',
-                    item: course,
-                    relevance: this.calculateRelevance(course, lowerQuery)
-                });
-            }
-        });
-        
-        // Search library
-        Object.values(window.LumenisData?.library || {}).flat().forEach(item => {
-            if (item.title.toLowerCase().includes(lowerQuery) || 
-                item.author.toLowerCase().includes(lowerQuery)) {
-                results.push({
-                    type: 'library',
-                    item: item,
-                    relevance: this.calculateRelevance(item, lowerQuery)
-                });
-            }
-        });
-        
-        return results.sort((a, b) => b.relevance - a.relevance);
-    }
-
-    calculateRelevance(item, query) {
-        let relevance = 0;
-        const title = item.title.toLowerCase();
-        const description = (item.description || '').toLowerCase();
-        
-        if (title.includes(query)) relevance += 10;
-        if (description.includes(query)) relevance += 5;
-        if (title.startsWith(query)) relevance += 5;
-        
-        return relevance;
-    }
-
-    displaySearchResults(results) {
-        // Display search results in UI
-        console.log('Search results:', results);
+    initializeProgressTracking() {
+        this.trackingData = {
+            sessionStart: Date.now(),
+            interactions: []
+        };
     }
 
     checkUserSession() {
-        // Check for existing user session
         const savedSession = localStorage.getItem('lumenisUserSession');
         if (savedSession) {
             try {
@@ -1074,7 +819,8 @@ class LumenisAcademy {
                     this.updateUserInterface();
                 }
             } catch (error) {
-                console.error('Error loading user session:', error);
+                console.error('Erro ao carregar sessão:', error);
+                localStorage.removeItem('lumenisUserSession');
             }
         }
     }
@@ -1083,201 +829,107 @@ class LumenisAcademy {
         if (this.isLoggedIn && this.userData) {
             const sessionData = {
                 userData: this.userData,
-                expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 days
+                expiresAt: Date.now() + (7 * 24 * 60 * 60 * 1000) // 7 dias
             };
             localStorage.setItem('lumenisUserSession', JSON.stringify(sessionData));
         }
     }
 
-    // Advanced features
-    enableDarkMode() {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('lumenisTheme', 'dark');
-    }
-
-    enableLightMode() {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('lumenisTheme', 'light');
-    }
-
-    // Accessibility features
-    enableHighContrast() {
-        document.body.classList.add('high-contrast');
-    }
-
-    enableReducedMotion() {
-        document.body.classList.add('reduced-motion');
-    }
-
-    // Performance monitoring
-    measurePerformance() {
-        if ('performance' in window) {
-            const navigation = performance.getEntriesByType('navigation')[0];
-            console.log('Page load time:', navigation.loadEventEnd - navigation.loadEventStart);
-        }
+    showMessage(message, type = 'info') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `floating-message ${type}`;
+        
+        const icon = type === 'success' ? 'check-circle' : 
+                    type === 'error' ? 'exclamation-triangle' : 
+                    'info-circle';
+        
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                <i class="fas fa-${icon}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        document.body.appendChild(messageDiv);
+        
+        setTimeout(() => {
+            messageDiv.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            messageDiv.classList.remove('show');
+            setTimeout(() => {
+                if (document.body.contains(messageDiv)) {
+                    document.body.removeChild(messageDiv);
+                }
+            }, 300);
+        }, 4000);
     }
 }
 
 // Initialize application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 DOM carregado - Iniciando Lumenis Academy...');
     window.lumenisApp = new LumenisAcademy();
 });
 
-// Service Worker registration for PWA functionality
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
-
-// Add custom CSS for dynamic features
-const dynamicStyles = `
-    .success-message {
+// Add message styles
+const messageStyles = `
+    .floating-message {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: linear-gradient(135deg, var(--success-green), var(--neural-cyan));
-        color: var(--pure-white);
-        padding: 1rem 1.5rem;
+        background: var(--deep-space);
+        border: 1px solid var(--neon-accent);
         border-radius: 10px;
+        padding: 1rem 1.5rem;
         box-shadow: var(--shadow-cosmic);
         z-index: 10000;
         transform: translateX(400px);
         transition: transform 0.3s ease;
+        max-width: 350px;
     }
     
-    .success-message.show {
+    .floating-message.show {
         transform: translateX(0);
     }
     
-    .success-content {
+    .floating-message.success {
+        border-color: var(--success-green);
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), var(--deep-space));
+    }
+    
+    .floating-message.error {
+        border-color: var(--danger-red);
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), var(--deep-space));
+    }
+    
+    .floating-message.info {
+        border-color: var(--neural-cyan);
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), var(--deep-space));
+    }
+    
+    .message-content {
         display: flex;
         align-items: center;
         gap: 0.75rem;
+        color: var(--light-matter);
     }
     
-    .success-content i {
-        font-size: 1.2rem;
+    .floating-message.success .message-content i {
+        color: var(--success-green);
     }
     
-    .library-category-card {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(124, 58, 237, 0.3);
-        border-radius: 20px;
-        padding: 2rem;
-        margin-bottom: 2rem;
+    .floating-message.error .message-content i {
+        color: var(--danger-red);
     }
     
-    .library-category-card h3 {
-        color: var(--neon-accent);
-        margin-bottom: 1.5rem;
-        font-size: 1.5rem;
-    }
-    
-    .library-item {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        background: rgba(124, 58, 237, 0.1);
-        border-radius: 10px;
-        margin-bottom: 1rem;
-        transition: var(--transition-smooth);
-    }
-    
-    .library-item:hover {
-        background: rgba(124, 58, 237, 0.2);
-        transform: translateX(5px);
-    }
-    
-    .item-icon {
-        width: 50px;
-        height: 50px;
-        background: var(--neon-accent);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--pure-white);
-        font-size: 1.2rem;
-    }
-    
-    .item-info {
-        flex: 1;
-    }
-    
-    .item-info h4 {
-        color: var(--pure-white);
-        margin-bottom: 0.25rem;
-        font-size: 1.1rem;
-    }
-    
-    .item-info p {
-        opacity: 0.8;
-        margin-bottom: 0.25rem;
-    }
-    
-    .item-meta {
-        font-size: 0.8rem;
-        opacity: 0.6;
-    }
-    
-    .btn-sm {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
-    }
-    
-    .premium-badge {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: var(--cosmic-gold);
-        color: var(--void-black);
-        padding: 0.25rem 0.5rem;
-        border-radius: 50px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        z-index: 2;
-    }
-    
-    .course-stats {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        font-size: 0.8rem;
-        opacity: 0.8;
-    }
-    
-    .course-stats span {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-    }
-    
-    .course-actions {
-        display: flex;
-        justify-content: flex-end;
-    }
-    
-    .premium-btn {
-        background: linear-gradient(135deg, var(--cosmic-gold), var(--warning-yellow));
-        color: var(--void-black);
-        font-weight: 600;
-    }
-    
-    .premium-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    .floating-message.info .message-content i {
+        color: var(--neural-cyan);
     }
     
     .dancing {
-        animation: mascotDance 2s infinite;
+        animation: mascotDance 2s ease-in-out;
     }
     
     @keyframes mascotDance {
@@ -1286,33 +938,8 @@ const dynamicStyles = `
         50% { transform: rotate(0deg) scale(1.1); }
         75% { transform: rotate(5deg) scale(1.05); }
     }
-    
-    .scrolled {
-        background: rgba(15, 23, 42, 0.98) !important;
-        backdrop-filter: blur(20px);
-    }
-    
-    @media (max-width: 768px) {
-        .mobile-mode .course-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .mobile-mode .features-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .mobile-mode .hero {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .mobile-mode .hero-content {
-            max-width: 100%;
-        }
-    }
 `;
 
-// Inject dynamic styles
 const styleSheet = document.createElement('style');
-styleSheet.textContent = dynamicStyles;
+styleSheet.textContent = messageStyles;
 document.head.appendChild(styleSheet);
